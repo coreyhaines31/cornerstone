@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME", "cornerstone_development") %>
+  username: <%= ENV.fetch("DATABASE_USER", "") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "") %>
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME", "cornerstone_test") %>
+  username: <%= ENV.fetch("DATABASE_USER", "") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "") %>
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  prepared_statements: false

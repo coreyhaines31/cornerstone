@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="h-full">
+  <head>
+    <title><%= content_for(:title) || Rails.application.config.application_name %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="<%= content_for(:meta_description) || 'Build your SaaS application faster' %>">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <% if content_for?(:head) %>
+      <%= yield :head %>
+    <% end %>
+  </head>
+
+  <body class="h-full bg-gray-50 dark:bg-gray-900">
+    <%= render "shared/navbar" if user_signed_in? %>
+
+    <main class="<%= user_signed_in? ? 'lg:pl-72' : '' %>">
+      <%= render "shared/flash" if flash.any? %>
+
+      <div class="<%= user_signed_in? ? 'py-10' : '' %>">
+        <%= yield %>
+      </div>
+    </main>
+
+    <%= render "shared/footer" unless user_signed_in? %>
+  </body>
+</html>
