@@ -1,0 +1,26 @@
+<article class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+  <header class="mx-auto max-w-3xl">
+    <h1 class="mt-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+      <%= @page.title %>
+    </h1>
+
+    <% if user_signed_in? && policy(@page).edit? %>
+      <div class="mt-4 flex items-center gap-x-4">
+        <%= link_to "Edit", edit_page_path(@page), class: "text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400" %>
+        <%= link_to "Manage Pages", pages_path, class: "text-sm font-semibold text-gray-600 hover:text-gray-500 dark:text-gray-400" %>
+      </div>
+    <% end %>
+  </header>
+
+  <div class="mx-auto max-w-3xl mt-8 prose prose-lg prose-indigo dark:prose-invert">
+    <%= simple_format(@page.content) %>
+  </div>
+
+  <% if @page.author %>
+    <footer class="mx-auto max-w-3xl mt-12 border-t border-gray-200 dark:border-gray-700 pt-8">
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        Last updated by <%= @page.author.name %> on <%= @page.updated_at.strftime("%B %d, %Y") %>
+      </p>
+    </footer>
+  <% end %>
+</article>
