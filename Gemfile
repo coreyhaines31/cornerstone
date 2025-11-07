@@ -15,6 +15,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails", "~> 3.0"
 gem "view_component", "~> 3.0"
+gem "phlex-icons", "~> 1.0" # Icon library with Heroicons, etc.
 
 # Authentication & Authorization
 gem "devise", "~> 4.9"
