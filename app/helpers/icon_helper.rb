@@ -1,23 +1,17 @@
 module IconHelper
-  # Render a Heroicon
+  # Render a Heroicon using rails_icons
   # Usage: <%= icon "home", class: "w-5 h-5" %>
   # Usage: <%= icon "user-circle", variant: :solid, class: "w-6 h-6" %>
   def icon(name, variant: :outline, **options)
-    icon_class = case variant
-    when :solid
-      "Phlex::Icons::Hero::#{name.to_s.camelize}Solid"
-    when :mini
-      "Phlex::Icons::Hero::#{name.to_s.camelize}Mini"
-    else
-      "Phlex::Icons::Hero::#{name.to_s.camelize}"
-    end
+    css_class = options.delete(:class) || "w-5 h-5"
 
-    begin
-      icon_component = icon_class.constantize.new(**options)
-      render icon_component
-    rescue NameError
-      # Fallback to a default icon if not found
-      content_tag(:span, "Icon not found: #{name}", class: "text-red-500 text-xs")
+    case variant
+    when :solid
+      heroicon(name, variant: :solid, class: css_class, **options)
+    when :mini
+      heroicon(name, variant: :mini, class: css_class, **options)
+    else
+      heroicon(name, variant: :outline, class: css_class, **options)
     end
   end
 
@@ -124,5 +118,13 @@ module IconHelper
 
   def globe_icon(**options)
     icon("globe-alt", **options)
+  end
+
+  def menu_icon(**options)
+    icon("bars-3", **options)
+  end
+
+  def dots_icon(**options)
+    icon("ellipsis-horizontal", **options)
   end
 end

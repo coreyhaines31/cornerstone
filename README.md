@@ -9,7 +9,7 @@ A production-ready Rails template for building multi-tenant SaaS applications. S
 - **🚀 Rails 8+** with PostgreSQL (UUIDs) and Redis
 - **🎨 TailwindCSS** with dark/light mode support
 - **⚡ Hotwire** (Turbo + Stimulus) for modern interactivity
-- **🎯 Phlex Icons** with Heroicons for beautiful UI
+- **🎯 Rails Icons** with Heroicons and Bootstrap Icons for beautiful UI
 - **🔐 Authentication** via Devise with magic links and TOTP
 - **🛡️ Authorization** via Pundit with per-model policies
 - **🏢 Multi-tenancy** with Account, User, and Membership models

@@ -40,7 +40,7 @@ def add_gems
   gem "tailwindcss-rails", "~> 3.0"
   gem "view_component", "~> 3.0"
   gem "lookbook", "~> 2.0", group: :development
-  gem "phlex-icons", "~> 1.0"
+  gem "rails_icons", "~> 0.3"
 
   # Authentication & Authorization
   gem "devise", "~> 4.9"
