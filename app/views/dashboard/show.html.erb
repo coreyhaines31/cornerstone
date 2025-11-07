@@ -1,84 +1,256 @@
 <% content_for :page_title, "Dashboard" %>
 
 <div class="px-4 sm:px-6 lg:px-8">
-  <div class="sm:flex sm:items-center">
+  <%# Header with greeting %>
+  <div class="sm:flex sm:items-center sm:justify-between">
     <div class="sm:flex-auto">
-      <h1 class="text-2xl font-semibold leading-6 text-gray-900 dark:text-white">Dashboard</h1>
+      <h1 class="text-2xl font-semibold leading-6 text-gray-900 dark:text-white">
+        <%= greeting %>, <%= current_user.name %>
+      </h1>
       <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
-        Welcome back, <%= current_user.name %>
+        Here's what's happening with <%= current_account.name %> today.
       </p>
+    </div>
+    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+      <%= link_to new_project_path, class: "inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" do %>
+        <%= icon "plus", variant: :solid, class: "h-5 w-5" %>
+        New Project
+      <% end %>
     </div>
   </div>
 
-  <%# Stats %>
+  <%# Stats with icons and trends %>
   <dl class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-    <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 px-4 py-5 shadow sm:p-6">
-      <dt class="truncate text-sm font-medium text-gray-500 dark:text-gray-400">Team Members</dt>
-      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
-        <%= @stats[:members] %>
+    <div class="relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 px-4 py-5 shadow sm:p-6">
+      <dt>
+        <div class="absolute rounded-md bg-indigo-500 p-3">
+          <%= icon "users", variant: :solid, class: "h-6 w-6 text-white" %>
+        </div>
+        <p class="ml-16 truncate text-sm font-medium text-gray-500 dark:text-gray-400">Team Members</p>
+      </dt>
+      <dd class="ml-16 flex items-baseline">
+        <p class="text-2xl font-semibold text-gray-900 dark:text-white">
+          <%= @stats[:members] %>
+        </p>
+        <p class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+          <%= icon "arrow-up", variant: :solid, class: "h-4 w-4 flex-shrink-0 self-center" %>
+          <span class="sr-only">Increased by</span>
+          12%
+        </p>
       </dd>
     </div>
 
-    <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 px-4 py-5 shadow sm:p-6">
-      <dt class="truncate text-sm font-medium text-gray-500 dark:text-gray-400">Projects</dt>
-      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
-        <%= @stats[:projects] %>
+    <div class="relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 px-4 py-5 shadow sm:p-6">
+      <dt>
+        <div class="absolute rounded-md bg-purple-500 p-3">
+          <%= icon "folder", variant: :solid, class: "h-6 w-6 text-white" %>
+        </div>
+        <p class="ml-16 truncate text-sm font-medium text-gray-500 dark:text-gray-400">Projects</p>
+      </dt>
+      <dd class="ml-16 flex items-baseline">
+        <p class="text-2xl font-semibold text-gray-900 dark:text-white">
+          <%= @stats[:projects] %>
+        </p>
+        <p class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+          <%= icon "arrow-up", variant: :solid, class: "h-4 w-4 flex-shrink-0 self-center" %>
+          <span class="sr-only">Increased by</span>
+          8%
+        </p>
       </dd>
     </div>
 
-    <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 px-4 py-5 shadow sm:p-6">
-      <dt class="truncate text-sm font-medium text-gray-500 dark:text-gray-400">Storage Used</dt>
-      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
-        <%= number_to_human_size(@stats[:storage_used]) %>
+    <div class="relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 px-4 py-5 shadow sm:p-6">
+      <dt>
+        <div class="absolute rounded-md bg-blue-500 p-3">
+          <%= icon "server", variant: :solid, class: "h-6 w-6 text-white" %>
+        </div>
+        <p class="ml-16 truncate text-sm font-medium text-gray-500 dark:text-gray-400">Storage Used</p>
+      </dt>
+      <dd class="ml-16 flex items-baseline">
+        <p class="text-2xl font-semibold text-gray-900 dark:text-white">
+          <%= number_to_human_size(@stats[:storage_used]) %>
+        </p>
+        <p class="ml-2 flex items-baseline text-sm font-semibold text-red-600">
+          <%= icon "arrow-up", variant: :solid, class: "h-4 w-4 flex-shrink-0 self-center" %>
+          <span class="sr-only">Increased by</span>
+          4%
+        </p>
       </dd>
     </div>
 
-    <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 px-4 py-5 shadow sm:p-6">
-      <dt class="truncate text-sm font-medium text-gray-500 dark:text-gray-400">Subscription</dt>
-      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-white capitalize">
-        <%= @account.subscription_status || 'Free' %>
+    <div class="relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 px-4 py-5 shadow sm:p-6">
+      <dt>
+        <div class="absolute rounded-md bg-green-500 p-3">
+          <%= icon "credit-card", variant: :solid, class: "h-6 w-6 text-white" %>
+        </div>
+        <p class="ml-16 truncate text-sm font-medium text-gray-500 dark:text-gray-400">Subscription</p>
+      </dt>
+      <dd class="ml-16 flex items-baseline">
+        <p class="text-2xl font-semibold text-gray-900 dark:text-white capitalize">
+          <%= @account.subscription_status || 'Free' %>
+        </p>
       </dd>
     </div>
   </dl>
 
-  <%# Recent Activity %>
+  <%# Quick Actions %>
   <div class="mt-8">
-    <div class="sm:flex sm:items-center">
-      <div class="sm:flex-auto">
-        <h2 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Recent Activity</h2>
-      </div>
-      <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-        <%= link_to "View all", audit_events_path, class: "text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400" %>
+    <h2 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Quick Actions</h2>
+    <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <%= link_to new_project_path, class: "relative rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-6 py-5 shadow-sm hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" do %>
+        <div class="flex items-start space-x-3">
+          <div class="flex-shrink-0">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-900">
+              <%= icon "folder-plus", variant: :solid, class: "h-6 w-6 text-indigo-600 dark:text-indigo-400" %>
+            </div>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="text-sm font-semibold text-gray-900 dark:text-white">Create Project</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Start a new project</p>
+          </div>
+        </div>
+      <% end %>
+
+      <%= link_to new_account_membership_path(current_account), class: "relative rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-6 py-5 shadow-sm hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" do %>
+        <div class="flex items-start space-x-3">
+          <div class="flex-shrink-0">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50 dark:bg-purple-900">
+              <%= icon "user-plus", variant: :solid, class: "h-6 w-6 text-purple-600 dark:text-purple-400" %>
+            </div>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="text-sm font-semibold text-gray-900 dark:text-white">Invite Member</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Add someone to your team</p>
+          </div>
+        </div>
+      <% end %>
+
+      <%= link_to account_settings_path(current_account), class: "relative rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-6 py-5 shadow-sm hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" do %>
+        <div class="flex items-start space-x-3">
+          <div class="flex-shrink-0">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-900">
+              <%= icon "cog-6-tooth", variant: :solid, class: "h-6 w-6 text-blue-600 dark:text-blue-400" %>
+            </div>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="text-sm font-semibold text-gray-900 dark:text-white">Settings</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Manage account settings</p>
+          </div>
+        </div>
+      <% end %>
+
+      <%= link_to pricing_path, class: "relative rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-6 py-5 shadow-sm hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" do %>
+        <div class="flex items-start space-x-3">
+          <div class="flex-shrink-0">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-50 dark:bg-green-900">
+              <%= icon "sparkles", variant: :solid, class: "h-6 w-6 text-green-600 dark:text-green-400" %>
+            </div>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="text-sm font-semibold text-gray-900 dark:text-white">Upgrade Plan</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Unlock more features</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# Two Column Layout for Activity and Other Info %>
+  <div class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <%# Recent Activity %>
+    <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow">
+      <div class="p-6">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Recent Activity</h2>
+          <%= link_to audit_events_path, class: "text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400" do %>
+            View all
+            <%= icon "arrow-right", variant: :solid, class: "ml-1 h-4 w-4 inline" %>
+          <% end %>
+        </div>
+
+        <div class="mt-6 flow-root">
+          <ul role="list" class="-my-5 divide-y divide-gray-200 dark:divide-gray-700">
+            <% @recent_activity.first(5).each do |event| %>
+              <li class="py-4">
+                <div class="flex items-center space-x-4">
+                  <div class="flex-shrink-0">
+                    <div class="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                      <%= icon "clock", variant: :solid, class: "h-4 w-4 text-gray-500 dark:text-gray-400" %>
+                    </div>
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm font-medium text-gray-900 dark:text-white"><%= event.description %></p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                      <%= event.user&.name || 'System' %> · <%= time_ago_in_words(event.created_at) %> ago
+                    </p>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div class="mt-4 flow-root">
-      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
-            <thead>
-              <tr>
-                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white sm:pl-0">Activity</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">User</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Time</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-              <% @recent_activity.each do |event| %>
-                <tr>
-                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-900 dark:text-white sm:pl-0">
-                    <%= event.description %>
-                  </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
-                    <%= event.user&.name || 'System' %>
-                  </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
-                    <%= time_ago_in_words(event.created_at) %> ago
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+    <%# Account Summary %>
+    <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow">
+      <div class="p-6">
+        <h2 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Account Summary</h2>
+
+        <dl class="mt-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <dt class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+              <%= icon "building-office", variant: :outline, class: "mr-2 h-5 w-5" %>
+              Account Name
+            </dt>
+            <dd class="text-sm font-medium text-gray-900 dark:text-white"><%= current_account.name %></dd>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <dt class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+              <%= icon "calendar", variant: :outline, class: "mr-2 h-5 w-5" %>
+              Created
+            </dt>
+            <dd class="text-sm font-medium text-gray-900 dark:text-white">
+              <%= current_account.created_at.strftime("%B %d, %Y") %>
+            </dd>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <dt class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+              <%= icon "user-group", variant: :outline, class: "mr-2 h-5 w-5" %>
+              Team Size
+            </dt>
+            <dd class="text-sm font-medium text-gray-900 dark:text-white">
+              <%= pluralize(@stats[:members], 'member') %>
+            </dd>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <dt class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+              <%= icon "credit-card", variant: :outline, class: "mr-2 h-5 w-5" %>
+              Plan
+            </dt>
+            <dd class="text-sm font-medium text-gray-900 dark:text-white capitalize">
+              <%= @account.subscription_status || 'Free Plan' %>
+            </dd>
+          </div>
+
+          <% if @account.subscription_status %>
+            <div class="flex items-center justify-between">
+              <dt class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                <%= icon "arrow-path", variant: :outline, class: "mr-2 h-5 w-5" %>
+                Billing Cycle
+              </dt>
+              <dd class="text-sm font-medium text-gray-900 dark:text-white">
+                <%= @account.subscription&.billing_cycle&.titleize || 'Monthly' %>
+              </dd>
+            </div>
+          <% end %>
+        </dl>
+
+        <div class="mt-6">
+          <%= link_to "Manage Subscription", account_subscription_path(current_account), class: "block w-full rounded-md bg-white dark:bg-gray-700 px-3 py-2 text-center text-sm font-semibold text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600" %>
         </div>
       </div>
     </div>
