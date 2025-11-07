@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get '/privacy', to: 'pages#privacy', as: :privacy
   get '/contact', to: 'pages#contact', as: :contact
   post '/contact', to: 'pages#contact_submit', as: :contact_submit
+  get '/styleguide', to: 'pages#styleguide', as: :styleguide
 
   # Authenticated routes
   authenticate :user do

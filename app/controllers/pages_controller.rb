@@ -23,6 +23,9 @@ class PagesController < ApplicationController
   def contact
   end
 
+  def styleguide
+  end
+
   def contact_submit
     name = params[:name]
     email = params[:email]

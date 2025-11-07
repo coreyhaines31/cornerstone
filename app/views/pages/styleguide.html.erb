@@ -1,0 +1,487 @@
+<% content_for :page_title, "Styleguide" %>
+
+<div class="bg-white dark:bg-gray-900 min-h-screen py-12">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <%# Header %>
+    <div class="mx-auto max-w-2xl text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+        Cornerstone Styleguide
+      </h1>
+      <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+        A comprehensive showcase of all UI components, colors, typography, and design patterns used in the Cornerstone template.
+      </p>
+    </div>
+
+    <%# Navigation %>
+    <div class="mt-12 border-b border-gray-200 dark:border-gray-700">
+      <nav class="-mb-px flex space-x-8 overflow-x-auto" aria-label="Tabs">
+        <a href="#colors" class="border-indigo-500 text-indigo-600 dark:text-indigo-400 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+          Colors
+        </a>
+        <a href="#typography" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+          Typography
+        </a>
+        <a href="#buttons" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+          Buttons
+        </a>
+        <a href="#forms" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+          Forms
+        </a>
+        <a href="#cards" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+          Cards
+        </a>
+        <a href="#icons" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+          Icons
+        </a>
+      </nav>
+    </div>
+
+    <%# Colors Section %>
+    <section id="colors" class="mt-16">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Color Palette</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        Our color system uses Tailwind CSS default colors with primary brand colors in indigo.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <%# Primary Colors %>
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Primary (Indigo)</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-x-3">
+              <div class="h-12 w-12 rounded-lg bg-indigo-50 dark:bg-indigo-950"></div>
+              <div class="text-sm">
+                <p class="font-medium text-gray-900 dark:text-white">50</p>
+                <p class="text-gray-500 dark:text-gray-400">#eef2ff</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-x-3">
+              <div class="h-12 w-12 rounded-lg bg-indigo-500"></div>
+              <div class="text-sm">
+                <p class="font-medium text-gray-900 dark:text-white">500</p>
+                <p class="text-gray-500 dark:text-gray-400">#6366f1</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-x-3">
+              <div class="h-12 w-12 rounded-lg bg-indigo-600"></div>
+              <div class="text-sm">
+                <p class="font-medium text-gray-900 dark:text-white">600</p>
+                <p class="text-gray-500 dark:text-gray-400">#4f46e5</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%# Gray Colors %>
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Neutral (Gray)</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-x-3">
+              <div class="h-12 w-12 rounded-lg bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-700"></div>
+              <div class="text-sm">
+                <p class="font-medium text-gray-900 dark:text-white">50 / 950</p>
+                <p class="text-gray-500 dark:text-gray-400">#f9fafb / #030712</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-x-3">
+              <div class="h-12 w-12 rounded-lg bg-gray-500"></div>
+              <div class="text-sm">
+                <p class="font-medium text-gray-900 dark:text-white">500</p>
+                <p class="text-gray-500 dark:text-gray-400">#6b7280</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-x-3">
+              <div class="h-12 w-12 rounded-lg bg-gray-900 dark:bg-gray-100"></div>
+              <div class="text-sm">
+                <p class="font-medium text-gray-900 dark:text-white">900 / 100</p>
+                <p class="text-gray-500 dark:text-gray-400">#111827 / #f3f4f6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%# Semantic Colors %>
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Semantic Colors</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-x-3">
+              <div class="h-12 w-12 rounded-lg bg-green-500"></div>
+              <div class="text-sm">
+                <p class="font-medium text-gray-900 dark:text-white">Success</p>
+                <p class="text-gray-500 dark:text-gray-400">Green 500</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-x-3">
+              <div class="h-12 w-12 rounded-lg bg-red-500"></div>
+              <div class="text-sm">
+                <p class="font-medium text-gray-900 dark:text-white">Error</p>
+                <p class="text-gray-500 dark:text-gray-400">Red 500</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-x-3">
+              <div class="h-12 w-12 rounded-lg bg-yellow-500"></div>
+              <div class="text-sm">
+                <p class="font-medium text-gray-900 dark:text-white">Warning</p>
+                <p class="text-gray-500 dark:text-gray-400">Yellow 500</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%# Typography Section %>
+    <section id="typography" class="mt-16">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Typography</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        We use system fonts for optimal performance and native feel across all platforms.
+      </p>
+
+      <div class="mt-8 space-y-8">
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Headings</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Heading 1</p>
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+                The quick brown fox jumps
+              </h1>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Heading 2</p>
+              <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                The quick brown fox jumps over the lazy dog
+              </h2>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Heading 3</p>
+              <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                The quick brown fox jumps over the lazy dog
+              </h3>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Heading 4</p>
+              <h4 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                The quick brown fox jumps over the lazy dog
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Body Text</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Large</p>
+              <p class="text-lg text-gray-600 dark:text-gray-300">
+                The quick brown fox jumps over the lazy dog. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Base</p>
+              <p class="text-base text-gray-600 dark:text-gray-300">
+                The quick brown fox jumps over the lazy dog. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Small</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300">
+                The quick brown fox jumps over the lazy dog. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%# Buttons Section %>
+    <section id="buttons" class="mt-16">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Buttons</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        Button variants and sizes for different use cases.
+      </p>
+
+      <div class="mt-8 space-y-8">
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Primary Buttons</h3>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="button" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              Button text
+            </button>
+            <button type="button" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              Small
+            </button>
+            <button type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              <%= icon "plus", variant: :solid, class: "h-5 w-5" %>
+              With icon
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Secondary Buttons</h3>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="button" class="rounded-md bg-white dark:bg-gray-800 px-3.5 py-2.5 text-sm font-semibold text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700">
+              Button text
+            </button>
+            <button type="button" class="rounded-md bg-white dark:bg-gray-800 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700">
+              Small
+            </button>
+            <button type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-white dark:bg-gray-800 px-3.5 py-2.5 text-sm font-semibold text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700">
+              <%= icon "arrow-right", variant: :solid, class: "h-5 w-5" %>
+              With icon
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Danger Buttons</h3>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="button" class="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
+              Delete
+            </button>
+            <button type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
+              <%= icon "trash", variant: :solid, class: "h-5 w-5" %>
+              Delete account
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Text Buttons</h3>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="button" class="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
+              Button text
+            </button>
+            <button type="button" class="inline-flex items-center gap-x-1 font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
+              Learn more
+              <%= icon "arrow-right", variant: :solid, class: "h-4 w-4" %>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%# Forms Section %>
+    <section id="forms" class="mt-16">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Form Elements</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        Input fields, selects, checkboxes, and other form controls.
+      </p>
+
+      <div class="mt-8 max-w-2xl space-y-6">
+        <div>
+          <label for="text-input" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
+            Text Input
+          </label>
+          <div class="mt-2">
+            <input type="text" name="text-input" id="text-input" class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Enter some text">
+          </div>
+        </div>
+
+        <div>
+          <label for="email-input" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
+            Email Input
+          </label>
+          <div class="mt-2">
+            <input type="email" name="email-input" id="email-input" class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <div>
+          <label for="select" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
+            Select
+          </label>
+          <div class="mt-2">
+            <select id="select" name="select" class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="textarea" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
+            Textarea
+          </label>
+          <div class="mt-2">
+            <textarea rows="4" name="textarea" id="textarea" class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Enter a longer message"></textarea>
+          </div>
+        </div>
+
+        <div class="relative flex items-start">
+          <div class="flex h-6 items-center">
+            <input id="checkbox" name="checkbox" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 focus:ring-indigo-600">
+          </div>
+          <div class="ml-3 text-sm leading-6">
+            <label for="checkbox" class="font-medium text-gray-900 dark:text-white">Checkbox</label>
+            <p class="text-gray-500 dark:text-gray-400">This is a checkbox with description text.</p>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-sm font-medium leading-6 text-gray-900 dark:text-white">Radio Group</label>
+          <div class="mt-2 space-y-4">
+            <div class="flex items-center gap-x-3">
+              <input id="radio-1" name="radio" type="radio" class="h-4 w-4 border-gray-300 dark:border-gray-600 text-indigo-600 focus:ring-indigo-600">
+              <label for="radio-1" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
+                Option 1
+              </label>
+            </div>
+            <div class="flex items-center gap-x-3">
+              <input id="radio-2" name="radio" type="radio" class="h-4 w-4 border-gray-300 dark:border-gray-600 text-indigo-600 focus:ring-indigo-600">
+              <label for="radio-2" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
+                Option 2
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%# Cards Section %>
+    <section id="cards" class="mt-16">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Cards</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        Card components for displaying grouped content.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <%# Simple Card %>
+        <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow">
+          <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Simple Card</h3>
+            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              This is a simple card with just content inside.
+            </p>
+          </div>
+        </div>
+
+        <%# Card with Header %>
+        <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow">
+          <div class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-5 sm:px-6">
+            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Card Header</h3>
+          </div>
+          <div class="px-4 py-5 sm:p-6">
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              This card has a distinct header section separated by a border.
+            </p>
+          </div>
+        </div>
+
+        <%# Card with Footer %>
+        <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow">
+          <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Card with Footer</h3>
+            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              This card includes a footer with actions.
+            </p>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-900 px-4 py-4 sm:px-6">
+            <button type="button" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
+              Learn more
+              <%= icon "arrow-right", variant: :solid, class: "ml-1 h-4 w-4 inline" %>
+            </button>
+          </div>
+        </div>
+
+        <%# Stat Card %>
+        <div class="relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 px-4 py-5 shadow sm:p-6">
+          <dt>
+            <div class="absolute rounded-md bg-indigo-500 p-3">
+              <%= icon "users", variant: :solid, class: "h-6 w-6 text-white" %>
+            </div>
+            <p class="ml-16 truncate text-sm font-medium text-gray-500 dark:text-gray-400">Total Users</p>
+          </dt>
+          <dd class="ml-16 flex items-baseline">
+            <p class="text-2xl font-semibold text-gray-900 dark:text-white">1,234</p>
+            <p class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+              <%= icon "arrow-up", variant: :solid, class: "h-4 w-4 flex-shrink-0 self-center" %>
+              12%
+            </p>
+          </dd>
+        </div>
+
+        <%# Feature Card %>
+        <div class="relative rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-6 py-5 shadow-sm hover:border-gray-400 dark:hover:border-gray-500">
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-900">
+                <%= icon "sparkles", variant: :solid, class: "h-6 w-6 text-indigo-600 dark:text-indigo-400" %>
+              </div>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-semibold text-gray-900 dark:text-white">Feature Card</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Interactive card with icon</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%# Icons Section %>
+    <section id="icons" class="mt-16 pb-16">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Icons</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        We use Heroicons via the rails_icons gem. Available in outline, solid, and mini variants.
+      </p>
+
+      <div class="mt-8 space-y-8">
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Common Icons</h3>
+          <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "home", variant: :outline, class: "h-6 w-6 text-gray-700 dark:text-gray-300" %>
+              <span class="text-sm text-gray-900 dark:text-white">home</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "users", variant: :outline, class: "h-6 w-6 text-gray-700 dark:text-gray-300" %>
+              <span class="text-sm text-gray-900 dark:text-white">users</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "cog-6-tooth", variant: :outline, class: "h-6 w-6 text-gray-700 dark:text-gray-300" %>
+              <span class="text-sm text-gray-900 dark:text-white">settings</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "bell", variant: :outline, class: "h-6 w-6 text-gray-700 dark:text-gray-300" %>
+              <span class="text-sm text-gray-900 dark:text-white">bell</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "envelope", variant: :outline, class: "h-6 w-6 text-gray-700 dark:text-gray-300" %>
+              <span class="text-sm text-gray-900 dark:text-white">envelope</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "magnifying-glass", variant: :outline, class: "h-6 w-6 text-gray-700 dark:text-gray-300" %>
+              <span class="text-sm text-gray-900 dark:text-white">search</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "lock-closed", variant: :solid, class: "h-6 w-6 text-gray-700 dark:text-gray-300" %>
+              <span class="text-sm text-gray-900 dark:text-white">lock</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "chart-bar", variant: :solid, class: "h-6 w-6 text-gray-700 dark:text-gray-300" %>
+              <span class="text-sm text-gray-900 dark:text-white">chart</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "credit-card", variant: :solid, class: "h-6 w-6 text-gray-700 dark:text-gray-300" %>
+              <span class="text-sm text-gray-900 dark:text-white">payment</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "check-circle", variant: :solid, class: "h-6 w-6 text-green-500" %>
+              <span class="text-sm text-gray-900 dark:text-white">success</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "x-circle", variant: :solid, class: "h-6 w-6 text-red-500" %>
+              <span class="text-sm text-gray-900 dark:text-white">error</span>
+            </div>
+            <div class="flex items-center gap-x-3 rounded-lg bg-white dark:bg-gray-800 p-4 shadow">
+              <%= icon "exclamation-triangle", variant: :solid, class: "h-6 w-6 text-yellow-500" %>
+              <span class="text-sm text-gray-900 dark:text-white">warning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
