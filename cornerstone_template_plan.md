@@ -44,7 +44,7 @@ These are the parts every app gets, no decisions required.
 - Dark/light toggle
 
 ### Observability & Security
-- Sentry for error tracking
+- Honeybadger or Sentry for error tracking
 - Lograge for structured logs
 - Rack::Attack rate limiting
 - SecureHeaders, CSP, SameSite strict
