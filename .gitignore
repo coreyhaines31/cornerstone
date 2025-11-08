@@ -94,3 +94,5 @@ yarn-debug.log*
 # Ignore Tailwind build files
 /app/assets/builds/*
 !/app/assets/builds/.keep
+/app/assets/builds/*
+!/app/assets/builds/.keep

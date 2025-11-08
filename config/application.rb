@@ -31,5 +31,8 @@ module Cornerstone
 
     # Set the default host for URL generation
     config.action_mailer.default_url_options = { host: ENV.fetch("APP_HOST", "localhost:3000") }
+
+    # Application name for use in views and mailers
+    config.application_name = ENV.fetch("APP_NAME", "Cornerstone")
   end
 end

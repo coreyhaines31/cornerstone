@@ -89,7 +89,7 @@ class ApplicationController < ActionController::Base
   end
 
   def skip_authorization?
-    devise_controller? || is_a?(HealthController)
+    devise_controller? || is_a?(HealthController) || is_a?(PagesController)
   end
 
   def require_admin!

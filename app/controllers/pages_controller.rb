@@ -1,6 +1,14 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!
 
+  private
+
+  def skip_authorization?
+    true
+  end
+
+  public
+
   def home
     if user_signed_in?
       redirect_to dashboard_path
