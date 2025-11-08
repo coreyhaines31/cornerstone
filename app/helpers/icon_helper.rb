@@ -1,130 +1,122 @@
 module IconHelper
   # Render a Heroicon using rails_icons
-  # Usage: <%= icon "home", class: "w-5 h-5" %>
-  # Usage: <%= icon "user-circle", variant: :solid, class: "w-6 h-6" %>
-  def icon(name, variant: :outline, **options)
+  # Usage: <%= icon_svg "home", class: "w-5 h-5" %>
+  # Usage: <%= icon_svg "user-circle", set: :solid, class: "w-6 h-6" %>
+  def icon_svg(name, set: :outline, **options)
     css_class = options.delete(:class) || "w-5 h-5"
-
-    case variant
-    when :solid
-      heroicon(name, variant: :solid, class: css_class, **options)
-    when :mini
-      heroicon(name, variant: :mini, class: css_class, **options)
-    else
-      heroicon(name, variant: :outline, class: css_class, **options)
-    end
+    icon(name, set: set.to_s, class: css_class, **options)
   end
 
   # Common icons used throughout the app
   def dashboard_icon(**options)
-    icon("chart-bar", **options)
+    icon_svg("chart-bar", **options)
   end
 
   def settings_icon(**options)
-    icon("cog-6-tooth", **options)
+    icon_svg("cog-6-tooth", **options)
   end
 
   def users_icon(**options)
-    icon("users", **options)
+    icon_svg("users", **options)
   end
 
   def user_icon(**options)
-    icon("user", **options)
+    icon_svg("user", **options)
   end
 
   def activity_icon(**options)
-    icon("clock", **options)
+    icon_svg("clock", **options)
   end
 
   def logout_icon(**options)
-    icon("arrow-right-on-rectangle", **options)
+    icon_svg("arrow-right-on-rectangle", **options)
   end
 
   def plus_icon(**options)
-    icon("plus", **options)
+    icon_svg("plus", **options)
   end
 
   def edit_icon(**options)
-    icon("pencil", **options)
+    icon_svg("pencil", **options)
   end
 
   def trash_icon(**options)
-    icon("trash", **options)
+    icon_svg("trash", **options)
   end
 
   def check_icon(**options)
-    icon("check", **options)
+    icon_svg("check", **options)
   end
 
   def x_icon(**options)
-    icon("x-mark", **options)
+    icon_svg("x-mark", **options)
   end
 
   def chevron_down_icon(**options)
-    icon("chevron-down", **options)
+    icon_svg("chevron-down", **options)
   end
 
   def chevron_up_icon(**options)
-    icon("chevron-up", **options)
+    icon_svg("chevron-up", **options)
   end
 
   def chevron_left_icon(**options)
-    icon("chevron-left", **options)
+    icon_svg("chevron-left", **options)
   end
 
   def chevron_right_icon(**options)
-    icon("chevron-right", **options)
+    icon_svg("chevron-right", **options)
   end
 
   def search_icon(**options)
-    icon("magnifying-glass", **options)
+    icon_svg("magnifying-glass", **options)
   end
 
   def bell_icon(**options)
-    icon("bell", **options)
+    icon_svg("bell", **options)
   end
 
   def envelope_icon(**options)
-    icon("envelope", **options)
+    icon_svg("envelope", **options)
   end
 
   def lock_icon(**options)
-    icon("lock-closed", **options)
+    icon_svg("lock-closed", **options)
   end
 
   def unlock_icon(**options)
-    icon("lock-open", **options)
+    icon_svg("lock-open", **options)
   end
 
   def credit_card_icon(**options)
-    icon("credit-card", **options)
+    icon_svg("credit-card", **options)
   end
 
   def home_icon(**options)
-    icon("home", **options)
+    icon_svg("home", **options)
   end
 
   def document_icon(**options)
-    icon("document-text", **options)
+    icon_svg("document-text", **options)
   end
 
   def folder_icon(**options)
-    icon("folder", **options)
+    icon_svg("folder", **options)
   end
 
   def calendar_icon(**options)
-    icon("calendar", **options)
+    icon_svg("calendar", **options)
   end
 
   def globe_icon(**options)
-    icon("globe-alt", **options)
+    icon_svg("globe-alt", **options)
   end
 
   def menu_icon(**options)
-    icon("bars-3", **options)
+    icon_svg("bars-3", **options)
   end
 
   def dots_icon(**options)
-    icon("ellipsis-horizontal", **options)
+    icon_svg("ellipsis-horizontal", **options)
   end
 end
