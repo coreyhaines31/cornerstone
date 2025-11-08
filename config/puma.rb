@@ -12,9 +12,10 @@ threads min_threads_count, max_threads_count
 # CPU cores in the system by default. It's not recommended to set this value
 # to a number higher than the number of CPUs in your system.
 #
-# Default is set to 1 for the development environment.
+# Default is set to 0 for the development environment to avoid macOS fork() issues.
+# In production, we use 4 workers.
 #
-workers ENV.fetch("WEB_CONCURRENCY") { ENV.fetch("RAILS_ENV") == "development" ? 1 : 4 }
+workers ENV.fetch("WEB_CONCURRENCY") { ENV.fetch("RAILS_ENV") == "development" ? 0 : 4 }
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
