@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.3.0"
+ruby "3.2.2"
 
 # Rails and core gems
 gem "rails", "~> 8.0.0"
@@ -19,15 +19,15 @@ gem "rails_icons", "~> 0.3" # Icon library with Heroicons, Bootstrap Icons, etc.
 
 # Authentication & Authorization
 gem "devise", "~> 4.9"
-gem "devise-two-factor", "~> 5.0"
+# gem "devise-two-factor", "~> 5.0" # TODO: Re-enable when Rails 8 support is added
 gem "pundit", "~> 2.3"
 gem "pretender", "~> 0.4"
 gem "rotp", "~> 6.3" # For OTP
 gem "rqrcode", "~> 2.2" # For QR codes
 
 # Billing
-gem "pay", "~> 7.0"
-gem "stripe", "~> 10.0"
+gem "stripe", "~> 12.0" # Pay gem requires stripe ~> 12
+# gem "pay", "~> 7.0" # TODO: Configure properly for Rails 8
 
 # Background jobs
 gem "sidekiq", "~> 7.2"
@@ -92,7 +92,7 @@ group :development do
   gem "web-console"
 
   # Performance monitoring
-  gem "bullet", "~> 7.1"
+  # gem "bullet", "~> 7.1" # TODO: Re-enable when Rails 8 support is added
   gem "rack-mini-profiler"
 
   # Component previews
