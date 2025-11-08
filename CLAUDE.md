@@ -44,6 +44,44 @@ rails c
 bundle exec sidekiq
 ```
 
+## Current Implementation Status
+
+### Shipped Features
+The following core features are fully implemented and working:
+
+**UI & Frontend**:
+- Homepage with hero section and feature showcase
+- Dashboard layout with navigation
+- Styleguide page for component reference
+- TailwindCSS integration with dark/light mode support
+- Heroicons via rails_icons gem (1,289 icons synced)
+- Icon helper with convenient methods (e.g., `icon_svg "home"`)
+
+**Authentication & Authorization**:
+- Devise setup with email/password authentication
+- Pundit authorization configured
+- Public pages (PagesController) properly configured
+
+**Database & Models**:
+- PostgreSQL with UUID primary keys
+- User, Account, Membership models
+- Current attributes for request context
+
+**Configuration**:
+- Application name configurable via ENV
+- Tailwind CSS build pipeline
+- Development server via `bin/dev`
+
+### Planned Features (Not Yet Implemented)
+These features are documented but generators/implementations are pending:
+- Billing providers (Stripe/Paddle/Polar)
+- Email providers (Resend/Postmark/SendGrid/Mailgun)
+- CMS functionality
+- SEO tools
+- AI integration (RubyLLM, ActiveAgent, MCP SDK)
+- Webhooks
+- Analytics
+
 ## Architecture
 
 ### Module Organization
