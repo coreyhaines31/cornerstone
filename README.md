@@ -99,10 +99,33 @@ config/
 ### Commands
 
 ```bash
-bin/setup     # Initial setup
-bin/dev       # Start development servers
+bin/setup     # Initial setup (installs dependencies, prepares database)
+bin/dev       # Start development servers (Rails + Tailwind CSS watcher)
 bin/test      # Run test suite
 bin/lint      # Run linters
+```
+
+### Development Server
+
+The `bin/dev` command starts all necessary processes using Foreman:
+- **Rails server** on port 3000 (http://localhost:3000)
+- **Tailwind CSS watcher** for live CSS compilation
+
+The server runs on **port 3000** by default. If you need to change the port, you can:
+
+```bash
+# Temporarily for one session
+PORT=4000 bin/dev
+
+# Or edit Procfile.dev to change it permanently
+# Change the first line to: web: bin/rails server -p 4000
+```
+
+You can also run processes individually if needed:
+
+```bash
+rails server        # Just the Rails server
+rails tailwindcss:watch  # Just the CSS watcher
 ```
 
 ### Running Tests
