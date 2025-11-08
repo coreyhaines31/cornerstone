@@ -1,38 +1,54 @@
 # 🧱 Cornerstone Rails SaaS Template
 
-A production-ready Rails template for building multi-tenant SaaS applications. Ships with authentication, authorization, billing, multi-tenancy, and a beautiful UI component library out of the box.
+A Rails 8 SaaS template foundation with modern UI, authentication, and multi-tenancy. Built for rapid development with a clean, modular architecture.
+
+## 🎯 Current Status
+
+**Version**: 0.1.0 (Early Development)
+
+This is an actively developed template. See below for what's currently shipped vs. planned.
 
 ## ✨ Features
 
-### Core Modules (Ship by Default)
+### ✅ Currently Implemented
 
-- **🚀 Rails 8+** with PostgreSQL (UUIDs) and Redis
+- **🚀 Rails 8.0.4** with PostgreSQL (UUIDs)
 - **🎨 TailwindCSS** with dark/light mode support
-- **⚡ Hotwire** (Turbo + Stimulus) for modern interactivity
-- **🎯 Rails Icons** with Heroicons and Bootstrap Icons for beautiful UI
-- **🔐 Authentication** via Devise with magic links and TOTP
-- **🛡️ Authorization** via Pundit with per-model policies
+- **⚡ Hotwire** (Turbo + Stimulus) ready
+- **🎯 Heroicons** via rails_icons gem (1,289+ icons)
+- **🔐 Authentication** via Devise (email/password configured)
+- **🛡️ Authorization** via Pundit (base setup complete)
 - **🏢 Multi-tenancy** with Account, User, and Membership models
-- **💳 Billing** with Stripe integration via Pay gem
-- **📧 Email delivery** with swappable providers (Resend default)
-- **🔒 Security** with Rack::Attack, SecureHeaders, and CSP
-- **📊 Observability** with Honeybadger and structured logging
+- **📄 Pages** - Homepage, Dashboard, Styleguide
+- **🎨 Icon Helper** - Convenient methods for all Heroicons
 
-### Switchable Modules
+### 🚧 In Progress / Planned
 
-Configure different providers in `config/cornerstone.yml`:
+- **💳 Billing** - Stripe/Paddle/Polar integration
+- **📧 Email** - Provider abstraction (Resend/Postmark/SendGrid/Mailgun)
+- **🔒 Security** - Rack::Attack, SecureHeaders, and CSP
+- **📊 Observability** - Honeybadger/Sentry integration
+- **🤖 AI Features** - LLM integration, agent workflows
+- **📝 CMS** - Content management system
+- **🔍 SEO** - Programmatic SEO tools
+- **🪝 Webhooks** - Webhook delivery system
+- **📈 Analytics** - Basic attribution dashboard
 
-| Module | Default | Alternatives |
-|--------|---------|--------------|
-| Auth | Devise | Rodauth |
+### 📋 Planned: Switchable Modules
+
+Future goal: Configure different providers in `config/cornerstone.yml`:
+
+| Module | Planned Default | Planned Alternatives |
+|--------|-----------------|----------------------|
 | Billing | Stripe | Paddle, Polar |
 | Email | Resend | Postmark, SendGrid, Mailgun |
 | Storage | AWS S3 | R2, GCS |
 | AI | OpenAI | Anthropic, Gemini, Ollama |
 | Jobs | Sidekiq | Solid Queue |
-| Search | PostgreSQL | Meilisearch, Algolia |
 
-### Optional Modules (via Generators)
+### 📋 Planned: Optional Modules (via Generators)
+
+Future generators to extend functionality:
 
 ```bash
 rails g cornerstone:cms        # Page & Post models with inline editing
@@ -42,32 +58,47 @@ rails g cornerstone:webhooks   # Webhook delivery system
 rails g cornerstone:analytics  # Basic analytics dashboard
 ```
 
+*Note: These generators are not yet implemented.*
+
 ## 🚀 Quick Start
 
-### Using the Template
+### Development Setup
+
+Currently, the best way to use Cornerstone is to clone and develop directly:
 
 ```bash
-# Create a new Rails app with Cornerstone
-rails new myapp -m https://raw.githubusercontent.com/coreyhaines31/cornerstone/main/template.rb
-
-# Or clone and use locally
+# Clone the repository
 git clone https://github.com/coreyhaines31/cornerstone.git
-rails new myapp -m cornerstone/template.rb
+cd cornerstone
 
-cd myapp
+# Install dependencies and setup database
 bin/setup
+
+# Start the development server
 bin/dev
 ```
 
+The server will start on http://localhost:3000
+
+### What You'll See
+
+After setup, you'll have access to:
+- **Homepage** at http://localhost:3000
+- **Styleguide** at http://localhost:3000/styleguide (component reference)
+- **Sign up/Login** via Devise at /users/sign_up
+
 ### Environment Setup
+
+Basic environment variables (optional for now):
 
 ```bash
 cp .env.example .env
-# Edit .env with your API keys:
-# - Stripe keys
-# - Resend API key
-# - Honeybadger API key
+# Edit .env as needed:
+# - APP_NAME (defaults to "Cornerstone")
+# - APP_HOST (defaults to "localhost:3000")
 ```
+
+*Note: Billing, email, and other integrations are not yet required.*
 
 ## 📁 Project Structure
 
