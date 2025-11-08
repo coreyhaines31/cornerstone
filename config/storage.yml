@@ -1,0 +1,35 @@
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+# Use bin/rails active_storage:update to set the service and remove this comment.
+amazon:
+  service: S3
+  access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
+  region: <%= ENV["AWS_REGION"] %>
+  bucket: <%= ENV["AWS_S3_BUCKET"] %>
+
+# Remember not to checkin your GCS keyfile to a version control system.
+# google:
+#   service: GCS
+#   project: your_project
+#   credentials: <%= Rails.root.join("path/to/gcs.json") %>
+#   bucket: your_own_bucket
+
+# Use rails credentials:edit to set the Azure Storage credentials.
+# azure:
+#   service: AzureStorage
+#   storage_account_name: your_account_name
+#   storage_access_key: <%= Rails.application.credentials.dig(:azure_storage, :storage_access_key) %>
+#   container: your_container_name
+
+# mirror:
+#   service: Mirror
+#   primary: local
+#   mirrors:
+#     - amazon
