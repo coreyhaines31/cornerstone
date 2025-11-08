@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :timeoutable, timeout_in: 30.minutes
 
   # OTP for two-factor authentication
-  has_one_time_password(encrypted: true)
+  # TODO: Re-enable when devise-two-factor supports Rails 8
+  # has_one_time_password(encrypted: true)
 
   # Associations
   has_many :memberships, dependent: :destroy
@@ -58,29 +59,30 @@ class User < ApplicationRecord
     memberships.where(accepted_at: nil)
   end
 
-  def otp_enabled?
-    otp_required_for_login?
-  end
+  # TODO: Re-enable when devise-two-factor supports Rails 8
+  # def otp_enabled?
+  #   otp_required_for_login?
+  # end
 
-  def enable_otp!
-    self.otp_secret = User.generate_otp_secret
-    self.otp_required_for_login = true
-    save!
-  end
+  # def enable_otp!
+  #   self.otp_secret = User.generate_otp_secret
+  #   self.otp_required_for_login = true
+  #   save!
+  # end
 
-  def disable_otp!
-    self.otp_required_for_login = false
-    self.consumed_timestep = nil
-    save!
-  end
+  # def disable_otp!
+  #   self.otp_required_for_login = false
+  #   self.consumed_timestep = nil
+  #   save!
+  # end
 
-  def otp_qr_code
-    require 'rqrcode'
-    issuer = Rails.application.config.application_name
-    label = "#{issuer}:#{email}"
-    qr_code = RQRCode::QRCode.new(otp_provisioning_uri(label, issuer: issuer))
-    qr_code.as_svg(module_size: 4)
-  end
+  # def otp_qr_code
+  #   require 'rqrcode'
+  #   issuer = Rails.application.config.application_name
+  #   label = "#{issuer}:#{email}"
+  #   qr_code = RQRCode::QRCode.new(otp_provisioning_uri(label, issuer: issuer))
+  #   qr_code.as_svg(module_size: 4)
+  # end
 
   def generate_magic_link_token
     token = SecureRandom.urlsafe_base64(32)
