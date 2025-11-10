@@ -1,35 +1,35 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class AccordionComponent < ViewComponent::Base
-    renders_many :items, lambda { |value:, class: nil, **options|
-      AccordionItem.new(value: value, class: binding.local_variable_get(:class), **options)
+  class AccordionComponent < BaseComponent
+    renders_many :items, lambda { |value:, html_class: nil, **options|
+      AccordionItem.new(value: value, html_class: html_class, **options)
     }
 
-    def initialize(type: :single, collapsible: true, class: nil, **options)
+    def initialize(type: :single, collapsible: true, html_class: nil, **options)
       @type = type
       @collapsible = collapsible
-      @class = binding.local_variable_get(:class)
+      @html_class = html_class
       @options = options
     end
 
     def call
-      tag.div(class: @class, data: { controller: "accordion", accordion_type: @type }, **@options) do
+      tag.div(class: @html_class, data: { controller: "accordion", accordion_type: @type }, **@options) do
         safe_join(items.map(&:to_s))
       end
     end
 
-    class AccordionItem < ViewComponent::Base
-      renders_one :trigger, lambda { |class: nil, **options|
-        AccordionTrigger.new(class: binding.local_variable_get(:class), **options)
+    class AccordionItem < BaseComponent
+      renders_one :trigger, lambda { |html_class: nil, **options|
+        AccordionTrigger.new(html_class: html_class, **options)
       }
-      renders_one :content, lambda { |class: nil, **options|
-        AccordionContent.new(class: binding.local_variable_get(:class), **options)
+      renders_one :content, lambda { |html_class: nil, **options|
+        AccordionContent.new(html_class: html_class, **options)
       }
 
-      def initialize(value:, class: nil, **options)
+      def initialize(value:, html_class: nil, **options)
         @value = value
-        @class = binding.local_variable_get(:class)
+        @html_class = html_class
         @options = options
       end
 
@@ -42,13 +42,13 @@ module Styleguide
       private
 
       def item_classes
-        ["border-b", @class].compact.join(" ")
+        merge_classes("border-b", @html_class)
       end
     end
 
-    class AccordionTrigger < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class AccordionTrigger < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -72,14 +72,14 @@ module Styleguide
         [
           "flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all",
           "hover:underline [&[data-state=open]>svg]:rotate-180",
-          @class
+          @html_class
         ].compact.join(" ")
       end
     end
 
-    class AccordionContent < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class AccordionContent < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -95,7 +95,7 @@ module Styleguide
       private
 
       def content_classes
-        ["pb-4 pt-0", @class].compact.join(" ")
+        merge_classes("pb-4 pt-0", @html_class)
       end
     end
   end

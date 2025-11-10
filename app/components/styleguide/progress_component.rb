@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class ProgressComponent < ViewComponent::Base
-    def initialize(value: 0, max: 100, class: nil, **options)
+  class ProgressComponent < BaseComponent
+    def initialize(value: 0, max: 100, html_class: nil, **options)
       @value = value
       @max = max
-      @class = binding.local_variable_get(:class)
+      @html_class = html_class
       @options = options
     end
 
@@ -26,10 +26,10 @@ module Styleguide
     end
 
     def progress_classes
-      [
+      merge_classes(
         "relative h-2 w-full overflow-hidden rounded-full bg-primary/20",
-        @class
-      ].compact.join(" ")
+        @html_class
+      )
     end
   end
 end

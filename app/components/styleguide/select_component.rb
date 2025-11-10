@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class SelectComponent < ViewComponent::Base
+  class SelectComponent < BaseComponent
     def initialize(
       name: nil,
       id: nil,
       disabled: false,
-      class: nil,
+      html_class: nil,
       **options
     )
       @name = name
       @id = id
       @disabled = disabled
-      @class = binding.local_variable_get(:class)
+      @html_class = html_class
       @options = options
     end
 
@@ -30,14 +30,14 @@ module Styleguide
     private
 
     def select_classes
-      [
+      merge_classes(
         "flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input",
         "bg-transparent px-3 py-2 text-sm shadow-sm",
         "focus:outline-none focus:ring-1 focus:ring-ring",
         "disabled:cursor-not-allowed disabled:opacity-50",
         "[&>span]:line-clamp-1",
-        @class
-      ].compact.join(" ")
+        @html_class
+      )
     end
   end
 end

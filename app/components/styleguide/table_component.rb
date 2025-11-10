@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class TableComponent < ViewComponent::Base
-    renders_one :header, lambda { |class: nil, **options|
-      TableHeader.new(class: binding.local_variable_get(:class), **options)
+  class TableComponent < BaseComponent
+    renders_one :header, lambda { |html_class: nil, **options|
+      TableHeader.new(html_class: html_class, **options)
     }
-    renders_one :body, lambda { |class: nil, **options|
-      TableBody.new(class: binding.local_variable_get(:class), **options)
+    renders_one :body, lambda { |html_class: nil, **options|
+      TableBody.new(html_class: html_class, **options)
     }
-    renders_one :footer, lambda { |class: nil, **options|
-      TableFooter.new(class: binding.local_variable_get(:class), **options)
+    renders_one :footer, lambda { |html_class: nil, **options|
+      TableFooter.new(html_class: html_class, **options)
     }
 
-    def initialize(class: nil, **options)
-      @class = binding.local_variable_get(:class)
+    def initialize(html_class: nil, **options)
+      @html_class = html_class
       @options = options
     end
 
@@ -28,15 +28,15 @@ module Styleguide
     private
 
     def table_classes
-      [
+      merge_classes(
         "w-full caption-bottom text-sm",
-        @class
-      ].compact.join(" ")
+        @html_class
+      )
     end
 
-    class TableHeader < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class TableHeader < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -47,13 +47,13 @@ module Styleguide
       private
 
       def header_classes
-        ["[&_tr]:border-b", @class].compact.join(" ")
+        ["[&_tr]:border-b", @html_class].compact.join(" ")
       end
     end
 
-    class TableBody < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class TableBody < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -64,13 +64,13 @@ module Styleguide
       private
 
       def body_classes
-        ["[&_tr:last-child]:border-0", @class].compact.join(" ")
+        ["[&_tr:last-child]:border-0", @html_class].compact.join(" ")
       end
     end
 
-    class TableFooter < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class TableFooter < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -81,14 +81,14 @@ module Styleguide
       private
 
       def footer_classes
-        ["border-t bg-muted/50 font-medium [&>tr]:last:border-b-0", @class].compact.join(" ")
+        ["border-t bg-muted/50 font-medium [&>tr]:last:border-b-0", @html_class].compact.join(" ")
       end
     end
   end
 
-  class TableRowComponent < ViewComponent::Base
-    def initialize(class: nil, **options)
-      @class = binding.local_variable_get(:class)
+  class TableRowComponent < BaseComponent
+    def initialize(html_class: nil, **options)
+      @html_class = html_class
       @options = options
     end
 
@@ -101,14 +101,14 @@ module Styleguide
     def row_classes
       [
         "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
-        @class
+        @html_class
       ].compact.join(" ")
     end
   end
 
-  class TableHeadComponent < ViewComponent::Base
-    def initialize(class: nil, **options)
-      @class = binding.local_variable_get(:class)
+  class TableHeadComponent < BaseComponent
+    def initialize(html_class: nil, **options)
+      @html_class = html_class
       @options = options
     end
 
@@ -122,14 +122,14 @@ module Styleguide
       [
         "h-10 px-2 text-left align-middle font-medium text-muted-foreground",
         "[&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-        @class
+        @html_class
       ].compact.join(" ")
     end
   end
 
-  class TableCellComponent < ViewComponent::Base
-    def initialize(class: nil, **options)
-      @class = binding.local_variable_get(:class)
+  class TableCellComponent < BaseComponent
+    def initialize(html_class: nil, **options)
+      @html_class = html_class
       @options = options
     end
 
@@ -142,14 +142,14 @@ module Styleguide
     def cell_classes
       [
         "p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-        @class
+        @html_class
       ].compact.join(" ")
     end
   end
 
-  class TableCaptionComponent < ViewComponent::Base
-    def initialize(class: nil, **options)
-      @class = binding.local_variable_get(:class)
+  class TableCaptionComponent < BaseComponent
+    def initialize(html_class: nil, **options)
+      @html_class = html_class
       @options = options
     end
 
@@ -160,7 +160,7 @@ module Styleguide
     private
 
     def caption_classes
-      ["mt-4 text-sm text-muted-foreground", @class].compact.join(" ")
+      merge_classes("mt-4 text-sm text-muted-foreground", @html_class)
     end
   end
 end

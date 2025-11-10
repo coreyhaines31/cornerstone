@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class SkeletonComponent < ViewComponent::Base
-    def initialize(class: nil, **options)
-      @class = binding.local_variable_get(:class)
+  class SkeletonComponent < BaseComponent
+    def initialize(html_class: nil, **options)
+      @html_class = html_class
       @options = options
     end
 
@@ -14,10 +14,10 @@ module Styleguide
     private
 
     def skeleton_classes
-      [
+      merge_classes(
         "animate-pulse rounded-md bg-primary/10",
-        @class
-      ].compact.join(" ")
+        @html_class
+      )
     end
   end
 end

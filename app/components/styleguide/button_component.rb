@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class ButtonComponent < ViewComponent::Base
+  class ButtonComponent < BaseComponent
     VARIANTS = {
       default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
       destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
@@ -24,7 +24,7 @@ module Styleguide
       type: :button,
       disabled: false,
       href: nil,
-      class: nil,
+      html_class: nil,
       **options
     )
       @variant = variant
@@ -32,7 +32,7 @@ module Styleguide
       @type = type
       @disabled = disabled
       @href = href
-      @class = binding.local_variable_get(:class)
+      @html_class = html_class
       @options = options
     end
 
@@ -51,14 +51,14 @@ module Styleguide
     private
 
     def button_classes
-      [
+      merge_classes(
         "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium",
         "transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
         "disabled:pointer-events-none disabled:opacity-50",
         VARIANTS[@variant],
         SIZES[@size],
-        @class
-      ].compact.join(" ")
+        @html_class
+      )
     end
   end
 end

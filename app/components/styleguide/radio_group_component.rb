@@ -1,31 +1,31 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class RadioGroupComponent < ViewComponent::Base
+  class RadioGroupComponent < BaseComponent
     renders_many :items, lambda { |value:, id:, label:, checked: false, **options|
       RadioItem.new(value: value, id: id, label: label, checked: checked, name: @name, **options)
     }
 
-    def initialize(name:, class: nil, **options)
+    def initialize(name:, html_class: nil, **options)
       @name = name
-      @class = binding.local_variable_get(:class)
+      @html_class = html_class
       @options = options
     end
 
     def call
-      tag.div(class: @class, **@options) do
+      tag.div(class: @html_class, **@options) do
         safe_join(items.map(&:to_s))
       end
     end
 
-    class RadioItem < ViewComponent::Base
-      def initialize(value:, id:, label:, name:, checked: false, class: nil, **options)
+    class RadioItem < BaseComponent
+      def initialize(value:, id:, label:, name:, checked: false, html_class: nil, **options)
         @value = value
         @id = id
         @label = label
         @name = name
         @checked = checked
-        @class = binding.local_variable_get(:class)
+        @html_class = html_class
         @options = options
       end
 
@@ -53,12 +53,12 @@ module Styleguide
       private
 
       def radio_classes
-        [
+        merge_classes(
           "aspect-square h-4 w-4 rounded-full border border-primary text-primary shadow",
           "focus:outline-none focus-visible:ring-1 focus-visible:ring-ring",
           "disabled:cursor-not-allowed disabled:opacity-50",
-          @class
-        ].compact.join(" ")
+          @html_class
+        )
       end
     end
   end

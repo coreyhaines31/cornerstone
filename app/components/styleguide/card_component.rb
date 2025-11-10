@@ -1,25 +1,25 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class CardComponent < ViewComponent::Base
-    renders_one :header, lambda { |class: nil, **options|
-      CardHeader.new(class: binding.local_variable_get(:class), **options)
+  class CardComponent < BaseComponent
+    renders_one :header, lambda { |html_class: nil, **options|
+      CardHeader.new(html_class: html_class, **options)
     }
-    renders_one :title, lambda { |class: nil, **options|
-      CardTitle.new(class: binding.local_variable_get(:class), **options)
+    renders_one :title, lambda { |html_class: nil, **options|
+      CardTitle.new(html_class: html_class, **options)
     }
-    renders_one :description, lambda { |class: nil, **options|
-      CardDescription.new(class: binding.local_variable_get(:class), **options)
+    renders_one :description, lambda { |html_class: nil, **options|
+      CardDescription.new(html_class: html_class, **options)
     }
-    renders_one :content, lambda { |class: nil, **options|
-      CardContent.new(class: binding.local_variable_get(:class), **options)
+    renders_one :content, lambda { |html_class: nil, **options|
+      CardContent.new(html_class: html_class, **options)
     }
-    renders_one :footer, lambda { |class: nil, **options|
-      CardFooter.new(class: binding.local_variable_get(:class), **options)
+    renders_one :footer, lambda { |html_class: nil, **options|
+      CardFooter.new(html_class: html_class, **options)
     }
 
-    def initialize(class: nil, **options)
-      @class = binding.local_variable_get(:class)
+    def initialize(html_class: nil, **options)
+      @html_class = html_class
       @options = options
     end
 
@@ -32,15 +32,15 @@ module Styleguide
     private
 
     def card_classes
-      [
+      merge_classes(
         "rounded-lg border bg-card text-card-foreground shadow",
-        @class
-      ].compact.join(" ")
+        @html_class
+      )
     end
 
-    class CardHeader < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class CardHeader < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -51,13 +51,13 @@ module Styleguide
       private
 
       def header_classes
-        ["flex flex-col space-y-1.5 p-6", @class].compact.join(" ")
+        merge_classes("flex flex-col space-y-1.5 p-6", @html_class)
       end
     end
 
-    class CardTitle < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class CardTitle < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -68,13 +68,13 @@ module Styleguide
       private
 
       def title_classes
-        ["font-semibold leading-none tracking-tight", @class].compact.join(" ")
+        merge_classes("font-semibold leading-none tracking-tight", @html_class)
       end
     end
 
-    class CardDescription < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class CardDescription < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -85,13 +85,13 @@ module Styleguide
       private
 
       def description_classes
-        ["text-sm text-muted-foreground", @class].compact.join(" ")
+        merge_classes("text-sm text-muted-foreground", @html_class)
       end
     end
 
-    class CardContent < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class CardContent < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -102,13 +102,13 @@ module Styleguide
       private
 
       def content_classes
-        ["p-6 pt-0", @class].compact.join(" ")
+        merge_classes("p-6 pt-0", @html_class)
       end
     end
 
-    class CardFooter < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class CardFooter < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -119,7 +119,7 @@ module Styleguide
       private
 
       def footer_classes
-        ["flex items-center p-6 pt-0", @class].compact.join(" ")
+        merge_classes("flex items-center p-6 pt-0", @html_class)
       end
     end
   end

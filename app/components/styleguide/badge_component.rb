@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class BadgeComponent < ViewComponent::Base
+  class BadgeComponent < BaseComponent
     VARIANTS = {
       default: "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
       secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
@@ -11,11 +11,11 @@ module Styleguide
 
     def initialize(
       variant: :default,
-      class: nil,
+      html_class: nil,
       **options
     )
       @variant = variant
-      @class = binding.local_variable_get(:class)
+      @html_class = html_class
       @options = options
     end
 
@@ -30,12 +30,12 @@ module Styleguide
     private
 
     def badge_classes
-      [
+      merge_classes(
         "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold",
         "transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
         VARIANTS[@variant],
-        @class
-      ].compact.join(" ")
+        @html_class
+      )
     end
   end
 end

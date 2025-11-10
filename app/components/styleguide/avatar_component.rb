@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class AvatarComponent < ViewComponent::Base
-    renders_one :image, lambda { |src:, alt:, class: nil, **options|
-      AvatarImage.new(src: src, alt: alt, class: binding.local_variable_get(:class), **options)
+  class AvatarComponent < BaseComponent
+    renders_one :image, lambda { |src:, alt:, html_class: nil, **options|
+      AvatarImage.new(src: src, alt: alt, html_class: html_class, **options)
     }
-    renders_one :fallback, lambda { |class: nil, **options|
-      AvatarFallback.new(class: binding.local_variable_get(:class), **options)
+    renders_one :fallback, lambda { |html_class: nil, **options|
+      AvatarFallback.new(html_class: html_class, **options)
     }
 
-    def initialize(class: nil, **options)
-      @class = binding.local_variable_get(:class)
+    def initialize(html_class: nil, **options)
+      @html_class = html_class
       @options = options
     end
 
@@ -23,17 +23,17 @@ module Styleguide
     private
 
     def avatar_classes
-      [
+      merge_classes(
         "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
-        @class
-      ].compact.join(" ")
+        @html_class
+      )
     end
 
-    class AvatarImage < ViewComponent::Base
-      def initialize(src:, alt:, class: nil, **options)
+    class AvatarImage < BaseComponent
+      def initialize(src:, alt:, html_class: nil, **options)
         @src = src
         @alt = alt
-        @class = binding.local_variable_get(:class)
+        @html_class = html_class
         @options = options
       end
 
@@ -49,13 +49,13 @@ module Styleguide
       private
 
       def image_classes
-        ["aspect-square h-full w-full", @class].compact.join(" ")
+        merge_classes("aspect-square h-full w-full", @html_class)
       end
     end
 
-    class AvatarFallback < ViewComponent::Base
-      def initialize(class: nil, **options)
-        @class = binding.local_variable_get(:class)
+    class AvatarFallback < BaseComponent
+      def initialize(html_class: nil, **options)
+        @html_class = html_class
         @options = options
       end
 
@@ -66,10 +66,10 @@ module Styleguide
       private
 
       def fallback_classes
-        [
+        merge_classes(
           "flex h-full w-full items-center justify-center rounded-full bg-muted",
-          @class
-        ].compact.join(" ")
+          @html_class
+        )
       end
     end
   end

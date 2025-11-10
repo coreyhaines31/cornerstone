@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class BreadcrumbComponent < ViewComponent::Base
-    renders_many :items, lambda { |href: nil, class: nil, **options|
-      BreadcrumbItem.new(href: href, class: binding.local_variable_get(:class), **options)
+  class BreadcrumbComponent < BaseComponent
+    renders_many :items, lambda { |href: nil, html_class: nil, **options|
+      BreadcrumbItem.new(href: href, html_class: html_class, **options)
     }
 
-    def initialize(class: nil, **options)
-      @class = binding.local_variable_get(:class)
+    def initialize(html_class: nil, **options)
+      @html_class = html_class
       @options = options
     end
 
     def call
-      tag.nav(class: @class, "aria-label": "breadcrumb", **@options) do
+      tag.nav(class: @html_class, "aria-label": "breadcrumb", **@options) do
         tag.ol(class: "flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5") do
           safe_join(
             items.map.with_index do |item, index|
@@ -37,10 +37,10 @@ module Styleguide
       )
     end
 
-    class BreadcrumbItem < ViewComponent::Base
-      def initialize(href: nil, class: nil, **options)
+    class BreadcrumbItem < BaseComponent
+      def initialize(href: nil, html_class: nil, **options)
         @href = href
-        @class = binding.local_variable_get(:class)
+        @html_class = html_class
         @options = options
       end
 
@@ -59,17 +59,17 @@ module Styleguide
       private
 
       def link_classes
-        [
+        merge_classes(
           "transition-colors hover:text-foreground",
-          @class
-        ].compact.join(" ")
+          @html_class
+        )
       end
 
       def span_classes
-        [
+        merge_classes(
           "font-normal text-foreground",
-          @class
-        ].compact.join(" ")
+          @html_class
+        )
       end
     end
   end

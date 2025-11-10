@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class SeparatorComponent < ViewComponent::Base
+  class SeparatorComponent < BaseComponent
     ORIENTATIONS = {
       horizontal: "h-[1px] w-full",
       vertical: "h-full w-[1px]"
     }.freeze
 
-    def initialize(orientation: :horizontal, class: nil, **options)
+    def initialize(orientation: :horizontal, html_class: nil, **options)
       @orientation = orientation
-      @class = binding.local_variable_get(:class)
+      @html_class = html_class
       @options = options
     end
 
@@ -25,11 +25,11 @@ module Styleguide
     private
 
     def separator_classes
-      [
+      merge_classes(
         "shrink-0 bg-border",
         ORIENTATIONS[@orientation],
-        @class
-      ].compact.join(" ")
+        @html_class
+      )
     end
   end
 end

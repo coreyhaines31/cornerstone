@@ -13,17 +13,17 @@ module Styleguide
   #     <% c.with_content(value: "tab2") { "Content 2" } %>
   #   <% end %>
   class TabsComponent < BaseComponent
-    renders_one :list, lambda { |html_class: nil, **options|
+    renders_one :list, lambda { |html_html_class: nil, **options|
       TabsList.new(html_class: html_class, **options)
     }
-    renders_many :triggers, lambda { |value:, html_class: nil, **options|
+    renders_many :triggers, lambda { |value:, html_html_class: nil, **options|
       TabsTrigger.new(value: value, html_class: html_class, **options)
     }
-    renders_many :contents, lambda { |value:, html_class: nil, **options|
+    renders_many :contents, lambda { |value:, html_html_class: nil, **options|
       TabsContent.new(value: value, html_class: html_class, **options)
     }
 
-    def initialize(default_value: nil, html_class: nil, **options)
+    def initialize(default_value: nil, html_html_class: nil, **options)
       @default_value = default_value
       @html_class = html_class
       @options = options
@@ -43,7 +43,7 @@ module Styleguide
     end
 
     class TabsList < BaseComponent
-      def initialize(html_class: nil, **options)
+      def initialize(html_html_class: nil, **options)
         @html_class = html_class
         @options = options
       end
@@ -63,7 +63,7 @@ module Styleguide
     end
 
     class TabsTrigger < BaseComponent
-      def initialize(value:, html_class: nil, **options)
+      def initialize(value:, html_html_class: nil, **options)
         @value = value
         @html_class = html_class
         @options = options
@@ -98,7 +98,7 @@ module Styleguide
     end
 
     class TabsContent < BaseComponent
-      def initialize(value:, html_class: nil, **options)
+      def initialize(value:, html_html_class: nil, **options)
         @value = value
         @html_class = html_class
         @options = options

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 module Styleguide
-  class LabelComponent < ViewComponent::Base
+  class LabelComponent < BaseComponent
     def initialize(
       for_id: nil,
-      class: nil,
+      html_class: nil,
       **options
     )
       @for_id = for_id
-      @class = binding.local_variable_get(:class)
+      @html_class = html_class
       @options = options
     end
 
@@ -24,10 +24,10 @@ module Styleguide
     private
 
     def label_classes
-      [
+      merge_classes(
         "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-        @class
-      ].compact.join(" ")
+        @html_class
+      )
     end
   end
 end
