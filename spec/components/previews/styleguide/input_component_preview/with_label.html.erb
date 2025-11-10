@@ -1,0 +1,5 @@
+<div class="space-y-2 p-4 max-w-sm">
+  <%= render Styleguide::LabelComponent.new(for_id: "email") { "Email" } %>
+  <%= render Styleguide::InputComponent.new(id: "email", type: :email, placeholder: "email@example.com") %>
+  <p class="text-sm text-muted-foreground">Enter your email address</p>
+</div>

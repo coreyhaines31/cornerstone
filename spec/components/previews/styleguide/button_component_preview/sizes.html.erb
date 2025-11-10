@@ -1,0 +1,11 @@
+<div class="space-y-4 p-4">
+  <h3 class="text-lg font-medium">Button Sizes</h3>
+  <div class="flex flex-wrap items-center gap-4">
+    <%= render Styleguide::ButtonComponent.new(size: :sm) { "Small" } %>
+    <%= render Styleguide::ButtonComponent.new(size: :default) { "Default" } %>
+    <%= render Styleguide::ButtonComponent.new(size: :lg) { "Large" } %>
+    <%= render Styleguide::ButtonComponent.new(size: :icon, variant: :outline) do %>
+      ❤️
+    <% end %>
+  </div>
+</div>

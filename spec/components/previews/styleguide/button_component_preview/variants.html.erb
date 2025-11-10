@@ -1,0 +1,11 @@
+<div class="space-y-4 p-4">
+  <h3 class="text-lg font-medium">Button Variants</h3>
+  <div class="flex flex-wrap gap-4">
+    <%= render Styleguide::ButtonComponent.new(variant: :default) { "Default" } %>
+    <%= render Styleguide::ButtonComponent.new(variant: :secondary) { "Secondary" } %>
+    <%= render Styleguide::ButtonComponent.new(variant: :destructive) { "Destructive" } %>
+    <%= render Styleguide::ButtonComponent.new(variant: :outline) { "Outline" } %>
+    <%= render Styleguide::ButtonComponent.new(variant: :ghost) { "Ghost" } %>
+    <%= render Styleguide::ButtonComponent.new(variant: :link) { "Link" } %>
+  </div>
+</div>

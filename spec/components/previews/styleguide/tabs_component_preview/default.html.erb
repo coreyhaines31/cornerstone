@@ -1,0 +1,33 @@
+<div class="p-4">
+  <%= render Styleguide::TabsComponent.new(default_value: "account") do |c| %>
+    <% c.with_list do %>
+      <%= render Styleguide::TabsComponent::TabsTrigger.new(value: "account") { "Account" } %>
+      <%= render Styleguide::TabsComponent::TabsTrigger.new(value: "password") { "Password" } %>
+      <%= render Styleguide::TabsComponent::TabsTrigger.new(value: "settings") { "Settings" } %>
+    <% end %>
+    <%= render Styleguide::TabsComponent::TabsContent.new(value: "account") do %>
+      <div class="space-y-2">
+        <h3 class="text-lg font-medium">Account</h3>
+        <p class="text-sm text-muted-foreground">
+          Make changes to your account here. Click save when you're done.
+        </p>
+      </div>
+    <% end %>
+    <%= render Styleguide::TabsComponent::TabsContent.new(value: "password") do %>
+      <div class="space-y-2">
+        <h3 class="text-lg font-medium">Password</h3>
+        <p class="text-sm text-muted-foreground">
+          Change your password here. After saving, you'll be logged out.
+        </p>
+      </div>
+    <% end %>
+    <%= render Styleguide::TabsComponent::TabsContent.new(value: "settings") do %>
+      <div class="space-y-2">
+        <h3 class="text-lg font-medium">Settings</h3>
+        <p class="text-sm text-muted-foreground">
+          Configure your application settings.
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
