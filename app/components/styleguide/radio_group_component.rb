@@ -13,7 +13,7 @@ module Styleguide
     end
 
     def call
-      tag.div(class: @html_class, **@options) do
+      tag.div(class: merge_classes("space-y-3", @html_class), **@options) do
         safe_join(items.map(&:to_s))
       end
     end
