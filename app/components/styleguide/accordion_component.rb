@@ -70,7 +70,7 @@ module Styleguide
 
       def trigger_classes
         [
-          "flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all",
+          "flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all duration-200",
           "hover:underline [&[data-state=open]>svg]:rotate-180",
           @html_class
         ].compact.join(" ")
