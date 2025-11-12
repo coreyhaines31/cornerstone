@@ -33,7 +33,7 @@ module Styleguide
 
     def card_classes
       merge_classes(
-        "rounded-lg border bg-card text-card-foreground shadow",
+        "rounded-lg border bg-card text-card-foreground shadow-sm",
         @html_class
       )
     end
