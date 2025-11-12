@@ -11,7 +11,7 @@ module Styleguide
     renders_one :description, lambda { |html_class: nil, **options|
       CardDescription.new(html_class: html_class, **options)
     }
-    renders_one :content, lambda { |html_class: nil, **options|
+    renders_one :body, lambda { |html_class: nil, **options|
       CardContent.new(html_class: html_class, **options)
     }
     renders_one :footer, lambda { |html_class: nil, **options|
@@ -25,7 +25,7 @@ module Styleguide
 
     def call
       tag.div(class: card_classes, **@options) do
-        safe_join([header, title, description, content, footer].compact)
+        safe_join([header, title, description, body, footer].compact)
       end
     end
 

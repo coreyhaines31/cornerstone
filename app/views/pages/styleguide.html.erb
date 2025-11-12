@@ -183,7 +183,7 @@
             <% c.with_title { "Card Title" } %>
             <% c.with_description { "Card description goes here." } %>
           <% end %>
-          <% c.with_content do %>
+          <% c.with_body do %>
             <p class="text-sm text-muted-foreground">This is the card content area.</p>
           <% end %>
           <% c.with_footer do %>
@@ -194,7 +194,7 @@
         <% end %>
 
         <%= render Styleguide::CardComponent.new do |c| %>
-          <% c.with_content do %>
+          <% c.with_body do %>
             <div class="space-y-4">
               <div class="flex items-center space-x-4">
                 <%= render Styleguide::AvatarComponent.new do |a| %>
@@ -212,7 +212,7 @@
         <% end %>
 
         <%= render Styleguide::CardComponent.new do |c| %>
-          <% c.with_content do %>
+          <% c.with_body do %>
             <%= render Styleguide::SkeletonComponent.new(class: "h-32 w-full mb-4") %>
             <%= render Styleguide::SkeletonComponent.new(class: "h-4 w-3/4 mb-2") %>
             <%= render Styleguide::SkeletonComponent.new(class: "h-4 w-1/2") %>
