@@ -259,41 +259,140 @@
     <section id="tables" class="mb-32">
       <h2 class="text-3xl font-bold tracking-tight text-foreground mb-2">Tables</h2>
       <p class="text-lg text-muted-foreground mb-8">
-        Display data in tabular format.
+        Display data in tabular format with sorting, filtering, and actions.
       </p>
 
-      <%= render Styleguide::TableComponent.new do |c| %>
-        <% c.with_header do %>
-          <%= render Styleguide::TableRowComponent.new do %>
-            <%= render Styleguide::TableHeadComponent.new { "Name" } %>
-            <%= render Styleguide::TableHeadComponent.new { "Email" } %>
-            <%= render Styleguide::TableHeadComponent.new { "Status" } %>
+      <div class="space-y-4">
+        <%# Table toolbar %>
+        <div class="flex items-center justify-between">
+          <div class="flex flex-1 items-center space-x-2">
+            <%= render Styleguide::InputComponent.new(
+              type: :text,
+              placeholder: "Filter tasks...",
+              html_class: "h-8 w-[150px] lg:w-[250px]"
+            ) %>
+            <%= render Styleguide::ButtonComponent.new(variant: :outline, size: :sm) do %>
+              Status
+            <% end %>
+            <%= render Styleguide::ButtonComponent.new(variant: :outline, size: :sm) do %>
+              Priority
+            <% end %>
+          </div>
+          <%= render Styleguide::ButtonComponent.new(size: :sm) do %>
+            Add Task
+          <% end %>
+        </div>
+
+        <%# Data table %>
+        <%= render Styleguide::TableComponent.new do |c| %>
+          <% c.with_header do %>
+            <%= render Styleguide::TableRowComponent.new do %>
+              <%= render Styleguide::TableHeadComponent.new(html_class: "w-[50px]") do %>
+                <%= render Styleguide::CheckboxComponent.new(id: "select-all") %>
+              <% end %>
+              <%= render Styleguide::TableHeadComponent.new { "Task" } %>
+              <%= render Styleguide::TableHeadComponent.new { "Title" } %>
+              <%= render Styleguide::TableHeadComponent.new { "Status" } %>
+              <%= render Styleguide::TableHeadComponent.new { "Priority" } %>
+              <%= render Styleguide::TableHeadComponent.new(html_class: "w-[50px]") %>
+            <% end %>
+          <% end %>
+          <% c.with_body do %>
+            <%# Row 1 %>
+            <%= render Styleguide::TableRowComponent.new do %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <%= render Styleguide::CheckboxComponent.new(id: "task-1") %>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new(html_class: "font-medium") { "TASK-8782" } %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <div class="flex items-center gap-2">
+                  <%= render Styleguide::BadgeComponent.new(variant: :outline, html_class: "font-normal") { "Documentation" } %>
+                  <span class="max-w-[500px] truncate">You can't compress the program without quantifying the open-source SSD pixel!</span>
+                </div>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <div class="flex items-center gap-2">
+                  <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+                  In Progress
+                </div>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <div class="flex items-center gap-1">
+                  <span>→</span>
+                  Medium
+                </div>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <%= render Styleguide::ButtonComponent.new(variant: :ghost, size: :icon, html_class: "h-8 w-8") do %>
+                  <span class="text-lg">⋯</span>
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <%# Row 2 %>
+            <%= render Styleguide::TableRowComponent.new do %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <%= render Styleguide::CheckboxComponent.new(id: "task-2") %>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new(html_class: "font-medium") { "TASK-7878" } %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <div class="flex items-center gap-2">
+                  <%= render Styleguide::BadgeComponent.new(variant: :outline, html_class: "font-normal") { "Documentation" } %>
+                  <span class="max-w-[500px] truncate">Try to calculate the EXE feed, maybe it will index the multi-byte pixel!</span>
+                </div>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <div class="flex items-center gap-2">
+                  <span class="h-2 w-2 rounded-full bg-gray-500"></span>
+                  Backlog
+                </div>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <div class="flex items-center gap-1">
+                  <span>→</span>
+                  Medium
+                </div>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <%= render Styleguide::ButtonComponent.new(variant: :ghost, size: :icon, html_class: "h-8 w-8") do %>
+                  <span class="text-lg">⋯</span>
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <%# Row 3 %>
+            <%= render Styleguide::TableRowComponent.new do %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <%= render Styleguide::CheckboxComponent.new(id: "task-3") %>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new(html_class: "font-medium") { "TASK-7839" } %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <div class="flex items-center gap-2">
+                  <%= render Styleguide::BadgeComponent.new(variant: :destructive, html_class: "font-normal") { "Bug" } %>
+                  <span class="max-w-[500px] truncate">We need to bypass the neural TCP card!</span>
+                </div>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <div class="flex items-center gap-2">
+                  <span class="h-2 w-2 rounded-full bg-yellow-500"></span>
+                  Todo
+                </div>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <div class="flex items-center gap-1">
+                  <span>↑</span>
+                  High
+                </div>
+              <% end %>
+              <%= render Styleguide::TableCellComponent.new do %>
+                <%= render Styleguide::ButtonComponent.new(variant: :ghost, size: :icon, html_class: "h-8 w-8") do %>
+                  <span class="text-lg">⋯</span>
+                <% end %>
+              <% end %>
+            <% end %>
           <% end %>
         <% end %>
-        <% c.with_body do %>
-          <%= render Styleguide::TableRowComponent.new do %>
-            <%= render Styleguide::TableCellComponent.new { "John Doe" } %>
-            <%= render Styleguide::TableCellComponent.new { "john@example.com" } %>
-            <%= render Styleguide::TableCellComponent.new do %>
-              <%= render Styleguide::BadgeComponent.new(variant: :default) { "Active" } %>
-            <% end %>
-          <% end %>
-          <%= render Styleguide::TableRowComponent.new do %>
-            <%= render Styleguide::TableCellComponent.new { "Jane Smith" } %>
-            <%= render Styleguide::TableCellComponent.new { "jane@example.com" } %>
-            <%= render Styleguide::TableCellComponent.new do %>
-              <%= render Styleguide::BadgeComponent.new(variant: :secondary) { "Pending" } %>
-            <% end %>
-          <% end %>
-          <%= render Styleguide::TableRowComponent.new do %>
-            <%= render Styleguide::TableCellComponent.new { "Bob Johnson" } %>
-            <%= render Styleguide::TableCellComponent.new { "bob@example.com" } %>
-            <%= render Styleguide::TableCellComponent.new do %>
-              <%= render Styleguide::BadgeComponent.new(variant: :destructive) { "Inactive" } %>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
+      </div>
     </section>
 
     <%# Avatar Section %>
