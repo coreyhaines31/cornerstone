@@ -287,14 +287,14 @@
         <%= render Styleguide::TableComponent.new do |c| %>
           <% c.with_header do %>
             <%= render Styleguide::TableRowComponent.new do %>
-              <%= render Styleguide::TableHeadComponent.new(html_class: "w-[50px]") do %>
+              <%= render Styleguide::TableHeadComponent.new(html_class: "w-12") do %>
                 <%= render Styleguide::CheckboxComponent.new(id: "select-all") %>
               <% end %>
-              <%= render Styleguide::TableHeadComponent.new { "Task" } %>
+              <%= render Styleguide::TableHeadComponent.new(html_class: "w-32") { "Task" } %>
               <%= render Styleguide::TableHeadComponent.new { "Title" } %>
-              <%= render Styleguide::TableHeadComponent.new { "Status" } %>
-              <%= render Styleguide::TableHeadComponent.new { "Priority" } %>
-              <%= render Styleguide::TableHeadComponent.new(html_class: "w-[50px]") %>
+              <%= render Styleguide::TableHeadComponent.new(html_class: "w-32") { "Status" } %>
+              <%= render Styleguide::TableHeadComponent.new(html_class: "w-32") { "Priority" } %>
+              <%= render Styleguide::TableHeadComponent.new(html_class: "w-12") %>
             <% end %>
           <% end %>
           <% c.with_body do %>
@@ -306,20 +306,20 @@
               <%= render Styleguide::TableCellComponent.new(html_class: "font-medium") { "TASK-8782" } %>
               <%= render Styleguide::TableCellComponent.new do %>
                 <div class="flex items-center gap-2">
-                  <%= render Styleguide::BadgeComponent.new(variant: :outline, html_class: "font-normal") { "Documentation" } %>
-                  <span class="max-w-[500px] truncate">You can't compress the program without quantifying the open-source SSD pixel!</span>
+                  <span class="inline-flex items-center rounded-md border border-input bg-background px-2.5 py-0.5 text-xs font-normal">Documentation</span>
+                  <span class="truncate">You can't compress the program without quantifying the open-source SSD pixel!</span>
                 </div>
               <% end %>
               <%= render Styleguide::TableCellComponent.new do %>
-                <div class="flex items-center gap-2">
-                  <span class="h-2 w-2 rounded-full bg-blue-500"></span>
-                  In Progress
+                <div class="flex items-center gap-2 whitespace-nowrap">
+                  <span class="h-2 w-2 rounded-full bg-blue-500 flex-shrink-0"></span>
+                  <span>In Progress</span>
                 </div>
               <% end %>
               <%= render Styleguide::TableCellComponent.new do %>
-                <div class="flex items-center gap-1">
+                <div class="flex items-center gap-1 whitespace-nowrap">
                   <span>→</span>
-                  Medium
+                  <span>Medium</span>
                 </div>
               <% end %>
               <%= render Styleguide::TableCellComponent.new do %>
@@ -337,20 +337,20 @@
               <%= render Styleguide::TableCellComponent.new(html_class: "font-medium") { "TASK-7878" } %>
               <%= render Styleguide::TableCellComponent.new do %>
                 <div class="flex items-center gap-2">
-                  <%= render Styleguide::BadgeComponent.new(variant: :outline, html_class: "font-normal") { "Documentation" } %>
-                  <span class="max-w-[500px] truncate">Try to calculate the EXE feed, maybe it will index the multi-byte pixel!</span>
+                  <span class="inline-flex items-center rounded-md border border-input bg-background px-2.5 py-0.5 text-xs font-normal">Documentation</span>
+                  <span class="truncate">Try to calculate the EXE feed, maybe it will index the multi-byte pixel!</span>
                 </div>
               <% end %>
               <%= render Styleguide::TableCellComponent.new do %>
-                <div class="flex items-center gap-2">
-                  <span class="h-2 w-2 rounded-full bg-gray-500"></span>
-                  Backlog
+                <div class="flex items-center gap-2 whitespace-nowrap">
+                  <span class="h-2 w-2 rounded-full bg-gray-500 flex-shrink-0"></span>
+                  <span>Backlog</span>
                 </div>
               <% end %>
               <%= render Styleguide::TableCellComponent.new do %>
-                <div class="flex items-center gap-1">
+                <div class="flex items-center gap-1 whitespace-nowrap">
                   <span>→</span>
-                  Medium
+                  <span>Medium</span>
                 </div>
               <% end %>
               <%= render Styleguide::TableCellComponent.new do %>
@@ -368,20 +368,20 @@
               <%= render Styleguide::TableCellComponent.new(html_class: "font-medium") { "TASK-7839" } %>
               <%= render Styleguide::TableCellComponent.new do %>
                 <div class="flex items-center gap-2">
-                  <%= render Styleguide::BadgeComponent.new(variant: :destructive, html_class: "font-normal") { "Bug" } %>
-                  <span class="max-w-[500px] truncate">We need to bypass the neural TCP card!</span>
+                  <span class="inline-flex items-center rounded-md border border-destructive bg-destructive text-destructive-foreground px-2.5 py-0.5 text-xs font-normal">Bug</span>
+                  <span class="truncate">We need to bypass the neural TCP card!</span>
                 </div>
               <% end %>
               <%= render Styleguide::TableCellComponent.new do %>
-                <div class="flex items-center gap-2">
-                  <span class="h-2 w-2 rounded-full bg-yellow-500"></span>
-                  Todo
+                <div class="flex items-center gap-2 whitespace-nowrap">
+                  <span class="h-2 w-2 rounded-full bg-yellow-500 flex-shrink-0"></span>
+                  <span>Todo</span>
                 </div>
               <% end %>
               <%= render Styleguide::TableCellComponent.new do %>
-                <div class="flex items-center gap-1">
+                <div class="flex items-center gap-1 whitespace-nowrap">
                   <span>↑</span>
-                  High
+                  <span>High</span>
                 </div>
               <% end %>
               <%= render Styleguide::TableCellComponent.new do %>
