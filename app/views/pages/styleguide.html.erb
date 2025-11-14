@@ -452,7 +452,7 @@
             </div>
           <% end %>
 
-          <% sidebar.with_item_group(label: "Platform", icon: "🎮", collapsible: true, open: true) do |group| %>
+          <% sidebar.with_group(label: "Platform", icon: "🎮", collapsible: true, open: true) do |group| %>
             <% group.with_children(label: "History", href: "#") %>
             <% group.with_children(label: "Starred", href: "#") %>
             <% group.with_children(label: "Settings", href: "#") %>

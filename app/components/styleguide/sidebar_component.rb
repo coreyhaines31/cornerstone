@@ -4,13 +4,11 @@ module Styleguide
   class SidebarComponent < BaseComponent
     renders_one :header
     renders_one :footer
-    renders_many :items, types: {
-      item: lambda { |**args|
-        SidebarItem.new(**args)
-      },
-      group: lambda { |**args, &block|
-        SidebarGroup.new(**args, &block)
-      }
+    renders_many :items, ->(label:, href: nil, icon: nil, active: false, **options) {
+      SidebarItem.new(label: label, href: href, icon: icon, active: active, **options)
+    }
+    renders_many :groups, ->(label:, icon: nil, collapsible: true, open: false, **options, &block) {
+      SidebarGroup.new(label: label, icon: icon, collapsible: collapsible, open: open, **options, &block)
     }
 
     def initialize(html_class: nil, **options)
@@ -22,9 +20,9 @@ module Styleguide
       tag.div(class: sidebar_classes, **@options) do
         safe_join([
           header,
-          tag.nav(class: "flex flex-1 flex-col px-3") do
+          tag.nav(class: "flex flex-1 flex-col px-3 py-4") do
             tag.ul(class: "flex flex-1 flex-col gap-y-1") do
-              safe_join(items)
+              safe_join(all_nav_items)
             end
           end,
           footer
@@ -33,6 +31,10 @@ module Styleguide
     end
 
     private
+
+    def all_nav_items
+      (groups + items).compact
+    end
 
     def sidebar_classes
       merge_classes(
