@@ -429,6 +429,54 @@
       <% end %>
     </section>
 
+    <%# Sidebar Section %>
+    <section id="sidebar" class="mb-32">
+      <h2 class="text-3xl font-bold tracking-tight text-foreground mb-2">Sidebar</h2>
+      <p class="text-lg text-muted-foreground mb-8">
+        Application sidebar with collapsible navigation groups.
+      </p>
+
+      <div class="h-[600px] w-full border rounded-lg overflow-hidden">
+        <%= render Styleguide::SidebarComponent.new do |sidebar| %>
+          <% sidebar.with_header do %>
+            <div class="flex h-14 items-center border-b px-4">
+              <div class="flex items-center gap-2">
+                <div class="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-semibold">
+                  <span>A</span>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold">Acme Inc</p>
+                  <p class="text-xs text-muted-foreground">Enterprise</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <% sidebar.with_item_group(label: "Platform", icon: "🎮", collapsible: true, open: true) do |group| %>
+            <% group.with_children(label: "History", href: "#") %>
+            <% group.with_children(label: "Starred", href: "#") %>
+            <% group.with_children(label: "Settings", href: "#") %>
+          <% end %>
+
+          <% sidebar.with_item(label: "Models", icon: "🗂", href: "#") %>
+          <% sidebar.with_item(label: "Documentation", icon: "📖", href: "#") %>
+          <% sidebar.with_item(label: "Settings", icon: "⚙️", href: "#") %>
+
+          <% sidebar.with_footer do %>
+            <div class="flex items-center gap-2 border-t p-4">
+              <div class="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
+                <span class="text-sm">👤</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm font-medium">shadcn</p>
+                <p class="text-xs text-muted-foreground">m@example.com</p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </section>
+
     <%# Layouts Section %>
     <section id="layouts" class="mb-32">
       <h2 class="text-3xl font-bold tracking-tight text-foreground mb-2">Layout Components</h2>
