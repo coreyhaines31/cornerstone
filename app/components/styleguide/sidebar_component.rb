@@ -38,7 +38,7 @@ module Styleguide
 
     def sidebar_classes
       merge_classes(
-        "flex h-full w-64 flex-col border-r bg-background",
+        "flex min-h-screen w-64 flex-col border-r bg-background",
         @html_class
       )
     end
