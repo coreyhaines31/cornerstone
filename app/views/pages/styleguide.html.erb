@@ -439,20 +439,63 @@
       <div class="h-screen w-full border rounded-lg overflow-auto bg-background">
         <%= render Styleguide::SidebarComponent.new do |sidebar| %>
           <% sidebar.with_header do %>
-            <button class="flex w-full h-14 items-center justify-between border-b px-4 hover:bg-accent transition-colors group text-left">
-              <div class="flex items-center gap-2 flex-1 min-w-0">
-                <div class="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-semibold flex-shrink-0">
-                  <span>A</span>
+            <div class="relative" data-controller="dropdown">
+              <button data-action="click->dropdown#toggle" class="flex w-full h-16 items-center justify-between border-b px-4 py-3 hover:bg-accent transition-colors group text-left">
+                <div class="flex items-center gap-3 flex-1 min-w-0">
+                  <div class="h-10 w-10 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-semibold flex-shrink-0">
+                    <span>A</span>
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm font-semibold truncate">Acme Inc</p>
+                    <p class="text-xs text-muted-foreground truncate">Enterprise</p>
+                  </div>
                 </div>
-                <div class="min-w-0 flex-1">
-                  <p class="text-sm font-semibold truncate">Acme Inc</p>
-                  <p class="text-xs text-muted-foreground truncate">Enterprise</p>
+                <svg class="h-4 w-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                </svg>
+              </button>
+
+              <%# Teams dropdown %>
+              <div data-dropdown-target="menu" class="hidden absolute left-0 right-0 top-full z-50 w-full border-b bg-popover shadow-lg">
+                <div class="p-2">
+                  <p class="px-2 py-1.5 text-xs font-semibold text-muted-foreground">Teams</p>
+                  <a href="#" class="flex items-center justify-between gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent">
+                    <div class="flex items-center gap-2">
+                      <div class="h-6 w-6 rounded-sm bg-muted flex items-center justify-center flex-shrink-0">
+                        <span class="text-xs">📦</span>
+                      </div>
+                      <span>Acme Inc</span>
+                    </div>
+                    <span class="text-xs text-muted-foreground">⌘1</span>
+                  </a>
+                  <a href="#" class="flex items-center justify-between gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent">
+                    <div class="flex items-center gap-2">
+                      <div class="h-6 w-6 rounded-sm bg-muted flex items-center justify-center flex-shrink-0">
+                        <span class="text-xs">📊</span>
+                      </div>
+                      <span>Acme Corp.</span>
+                    </div>
+                    <span class="text-xs text-muted-foreground">⌘2</span>
+                  </a>
+                  <a href="#" class="flex items-center justify-between gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent">
+                    <div class="flex items-center gap-2">
+                      <div class="h-6 w-6 rounded-sm bg-muted flex items-center justify-center flex-shrink-0">
+                        <span class="text-xs">⚙️</span>
+                      </div>
+                      <span>Evil Corp.</span>
+                    </div>
+                    <span class="text-xs text-muted-foreground">⌘3</span>
+                  </a>
+                  <div class="my-1 h-px bg-border"></div>
+                  <a href="#" class="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    <span>Add team</span>
+                  </a>
                 </div>
               </div>
-              <svg class="h-4 w-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-              </svg>
-            </button>
+            </div>
           <% end %>
 
           <%
@@ -473,22 +516,71 @@
           <% sidebar.with_item(label: "Settings", icon: settings_icon, href: "#") %>
 
           <% sidebar.with_footer do %>
-            <button class="flex w-full items-center justify-between gap-2 border-t p-4 hover:bg-accent transition-colors group text-left">
-              <div class="flex items-center gap-2 flex-1 min-w-0">
-                <div class="h-8 w-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-                  <svg class="h-5 w-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                  </svg>
+            <div class="relative mt-auto" data-controller="dropdown">
+              <button data-action="click->dropdown#toggle" class="flex w-full items-center justify-between gap-2 border-t p-4 hover:bg-accent transition-colors group text-left">
+                <div class="flex items-center gap-2 flex-1 min-w-0">
+                  <div class="h-8 w-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+                    <svg class="h-5 w-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm font-medium truncate">shadcn</p>
+                    <p class="text-xs text-muted-foreground truncate">m@example.com</p>
+                  </div>
                 </div>
-                <div class="min-w-0 flex-1">
-                  <p class="text-sm font-medium truncate">shadcn</p>
-                  <p class="text-xs text-muted-foreground truncate">m@example.com</p>
+                <svg class="h-4 w-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                </svg>
+              </button>
+
+              <%# User dropdown %>
+              <div data-dropdown-target="menu" class="hidden absolute left-0 right-0 bottom-full z-50 w-full mb-1 border rounded-md bg-popover shadow-lg">
+                <div class="p-2">
+                  <div class="flex items-center gap-2 px-2 py-1.5 mb-1">
+                    <div class="h-8 w-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+                      <span class="text-sm">👤</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-medium truncate">shadcn</p>
+                      <p class="text-xs text-muted-foreground truncate">m@example.com</p>
+                    </div>
+                  </div>
+                  <div class="my-1 h-px bg-border"></div>
+                  <a href="#" class="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                    </svg>
+                    <span>Upgrade to Pro</span>
+                  </a>
+                  <a href="#" class="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Account</span>
+                  </a>
+                  <a href="#" class="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+                    </svg>
+                    <span>Billing</span>
+                  </a>
+                  <a href="#" class="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                    </svg>
+                    <span>Notifications</span>
+                  </a>
+                  <div class="my-1 h-px bg-border"></div>
+                  <a href="#" class="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                    </svg>
+                    <span>Log out</span>
+                  </a>
                 </div>
               </div>
-              <svg class="h-4 w-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-              </svg>
-            </button>
+            </div>
           <% end %>
         <% end %>
       </div>
