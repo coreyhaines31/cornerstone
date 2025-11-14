@@ -89,9 +89,7 @@ module Styleguide
 
     # Sidebar Group Component (Collapsible)
     class SidebarGroup < BaseComponent
-      renders_many :children, ->(label:, href: nil, icon: nil, active: false, **options) {
-        SidebarItem.new(label: label, href: href, icon: icon, active: active, **options)
-      }
+      attr_reader :children_items
 
       def initialize(label:, icon: nil, collapsible: true, open: false, html_class: nil, **options)
         @label = label
@@ -100,6 +98,11 @@ module Styleguide
         @open = open
         @html_class = html_class
         @options = options
+        @children_items = []
+      end
+
+      def with_children(label:, href: nil, icon: nil, active: false, **options)
+        @children_items << SidebarItem.new(label: label, href: href, icon: icon, active: active, **options)
       end
 
       def call
@@ -146,13 +149,13 @@ module Styleguide
       end
 
       def render_content
-        return nil if children.empty?
+        return nil if children_items.empty?
 
         tag.ul(
           class: "ml-4 mt-1 space-y-1 border-l pl-3 #{@open ? '' : 'hidden'}",
           data: { sidebar_group_target: "content" }
         ) do
-          safe_join(children)
+          safe_join(children_items.map { |item| render(item) })
         end
       end
 
