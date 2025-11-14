@@ -89,8 +89,8 @@ module Styleguide
 
     # Sidebar Group Component (Collapsible)
     class SidebarGroup < BaseComponent
-      renders_many :children, lambda { |**args|
-        SidebarItem.new(**args)
+      renders_many :children, ->(label:, href: nil, icon: nil, active: false, **options) {
+        SidebarItem.new(label: label, href: href, icon: icon, active: active, **options)
       }
 
       def initialize(label:, icon: nil, collapsible: true, open: false, html_class: nil, **options)
