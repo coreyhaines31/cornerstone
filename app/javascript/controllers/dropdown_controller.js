@@ -4,10 +4,12 @@ export default class extends Controller {
   static targets = ["menu", "button"]
 
   connect() {
+    console.log("Dropdown controller connected")
     this.close = this.close.bind(this)
   }
 
   toggle(event) {
+    console.log("Dropdown toggle clicked")
     event.preventDefault()
     event.stopPropagation()
 
