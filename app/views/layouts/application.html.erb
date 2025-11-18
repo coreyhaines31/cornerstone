@@ -15,7 +15,11 @@
   </head>
 
   <body class="h-full bg-gray-50 dark:bg-gray-900">
-    <%= render "shared/navbar" if user_signed_in? %>
+    <% if user_signed_in? %>
+      <%= render "shared/navbar" %>
+    <% else %>
+      <%= render "shared/marketing_header" %>
+    <% end %>
 
     <main class="<%= user_signed_in? ? 'lg:pl-72' : '' %>">
       <%= render "shared/flash" if flash.any? %>
