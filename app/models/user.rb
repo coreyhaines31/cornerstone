@@ -52,7 +52,7 @@ class User < ApplicationRecord
   end
 
   def member_of?(account)
-    memberships.exists?(account: account, accepted_at: !nil)
+    memberships.where(account: account).where.not(accepted_at: nil).exists?
   end
 
   def pending_invitations
