@@ -14,6 +14,8 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails", "~> 3.0"
+gem "inertia_rails"
+gem "vite_rails"
 gem "view_component", "~> 3.0"
 gem "rails_icons", "~> 0.3" # Icon library with Heroicons, Bootstrap Icons, etc.
 

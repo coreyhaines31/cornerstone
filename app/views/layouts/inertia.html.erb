@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html class="h-full">
+  <head>
+    <title><%= content_for(:title) || Rails.application.config.application_name %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="<%= content_for(:meta_description) || 'Build your SaaS application faster' %>">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= vite_client_tag %>
+    <%= vite_javascript_tag "entrypoints/application", "data-turbo-track": "reload" %>
+    <%= vite_stylesheet_tag "entrypoints/application", "data-turbo-track": "reload" %>
+    <%= inertia_head %>
+  </head>
+
+  <body class="h-full bg-background text-foreground">
+    <%= inertia_html %>
+  </body>
+</html>

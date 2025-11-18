@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  layout :pages_layout
   skip_before_action :authenticate_user!
   skip_after_action :verify_authorized
   skip_after_action :verify_policy_scoped
@@ -26,6 +27,7 @@ class PagesController < ApplicationController
   end
 
   def styleguide
+    render inertia: "Styleguide"
   end
 
   def contact_submit
@@ -42,5 +44,11 @@ class PagesController < ApplicationController
       flash[:alert] = "Please fill in all fields."
       redirect_to contact_path
     end
+  end
+
+  private
+
+  def pages_layout
+    action_name == "styleguide" ? "inertia" : "application"
   end
 end

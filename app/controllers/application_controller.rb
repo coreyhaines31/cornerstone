@@ -1,9 +1,22 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
+  include InertiaRails::Controller
 
   before_action :authenticate_user!, unless: :devise_controller?
   before_action :set_current_attributes
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  inertia_share do
+    {
+      flash: flash.to_hash.slice(:alert, :notice),
+      current_user: current_user && {
+        id: current_user.id,
+        email: current_user.email,
+        first_name: current_user.first_name,
+        last_name: current_user.last_name
+      }
+    }
+  end
 
   after_action :verify_authorized, except: :index, unless: :skip_authorization?
   after_action :verify_policy_scoped, only: :index, unless: :skip_authorization?
@@ -105,4 +118,5 @@ class ApplicationController < ActionController::Base
       redirect_back(fallback_location: dashboard_path)
     end
   end
+
 end
