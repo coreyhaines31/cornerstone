@@ -439,11 +439,11 @@
         Application sidebar with collapsible navigation groups.
       </p>
 
-      <div class="h-screen w-full border rounded-lg overflow-auto bg-background">
+      <div class="h-screen w-full border rounded-lg overflow-x-visible overflow-y-auto bg-background">
         <%= render Styleguide::SidebarComponent.new do |sidebar| %>
           <% sidebar.with_header do %>
-            <div class="relative" data-controller="dropdown">
-              <button data-action="click->dropdown#toggle" class="flex w-full h-16 items-center justify-between border-b px-4 py-3 hover:bg-accent transition-colors group text-left">
+            <div class="relative overflow-visible" data-controller="dropdown">
+              <%= tag.button type: "button", data: { action: "click->dropdown#toggle" }, class: "flex w-full h-16 items-center justify-between border-b px-4 py-3 hover:bg-accent transition-colors group text-left" do %>
                 <div class="flex items-center gap-3 flex-1 min-w-0">
                   <div class="h-10 w-10 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-semibold flex-shrink-0">
                     <span>A</span>
@@ -456,10 +456,10 @@
                 <svg class="h-4 w-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
                 </svg>
-              </button>
+              <% end %>
 
               <%# Teams dropdown %>
-              <div data-dropdown-target="menu" class="hidden absolute left-0 right-0 top-full z-50 w-full border-b bg-popover shadow-lg">
+              <div data-dropdown-target="menu" class="hidden absolute top-0 z-[100] w-64 border rounded-md bg-popover shadow-lg" style="left: calc(100% + 0.5rem);">
                 <div class="p-2">
                   <p class="px-2 py-1.5 text-xs font-semibold text-muted-foreground">Teams</p>
                   <a href="#" class="flex items-center justify-between gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent">
@@ -519,8 +519,8 @@
           <% sidebar.with_item(label: "Settings", icon: settings_icon, href: "#") %>
 
           <% sidebar.with_footer do %>
-            <div class="relative mt-auto" data-controller="dropdown">
-              <button data-action="click->dropdown#toggle" class="flex w-full items-center justify-between gap-2 border-t p-4 hover:bg-accent transition-colors group text-left">
+            <div class="relative mt-auto overflow-visible" data-controller="dropdown">
+              <%= tag.button type: "button", data: { action: "click->dropdown#toggle" }, class: "flex w-full items-center justify-between gap-2 border-t p-4 hover:bg-accent transition-colors group text-left" do %>
                 <div class="flex items-center gap-2 flex-1 min-w-0">
                   <div class="h-8 w-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
                     <svg class="h-5 w-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -535,10 +535,10 @@
                 <svg class="h-4 w-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
                 </svg>
-              </button>
+              <% end %>
 
               <%# User dropdown %>
-              <div data-dropdown-target="menu" class="hidden absolute left-0 right-0 bottom-full z-50 w-full mb-1 border rounded-md bg-popover shadow-lg">
+              <div data-dropdown-target="menu" class="hidden absolute bottom-0 z-[100] w-64 border rounded-md bg-popover shadow-lg" style="left: calc(100% + 0.5rem);">
                 <div class="p-2">
                   <div class="flex items-center gap-2 px-2 py-1.5 mb-1">
                     <div class="h-8 w-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">

@@ -22,10 +22,17 @@ export default class extends Controller {
 
   open() {
     this.menuTarget.classList.remove("hidden")
-    document.addEventListener("click", this.close)
+    // Use setTimeout to prevent immediate close from the same click event
+    setTimeout(() => {
+      document.addEventListener("click", this.close)
+    }, 0)
   }
 
-  close() {
+  close(event) {
+    // Don't close if clicking inside the dropdown
+    if (event && this.element.contains(event.target)) {
+      return
+    }
     this.menuTarget.classList.add("hidden")
     document.removeEventListener("click", this.close)
   }
