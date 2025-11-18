@@ -21,7 +21,7 @@ class Account < ApplicationRecord
   before_validation :generate_slug, on: :create
 
   # Store settings as JSON
-  serialize :settings, JSON
+  serialize :settings, coder: JSON
 
   def owner
     memberships.owners.first&.user
