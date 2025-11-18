@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "Team", type: :request do
+  include_context "requires table", "users"
+
   let(:user) { create(:user, :with_account) }
 
   describe "GET /team" do

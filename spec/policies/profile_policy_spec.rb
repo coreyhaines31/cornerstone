@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe ProfilePolicy do
+  include_context "requires table", "users"
+
   subject(:policy) { described_class.new(user, record) }
 
   let(:record) { owner }

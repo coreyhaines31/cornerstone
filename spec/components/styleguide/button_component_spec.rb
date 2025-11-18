@@ -22,7 +22,7 @@ RSpec.describe Styleguide::ButtonComponent, type: :component do
       render_inline(described_class.new(size: :lg)) { "Large" }
 
       expect(page).to have_button("Large")
-      expect(page).to have_css("button.h-10")
+      expect(page).to have_css("button.h-11")
     end
 
     it "renders as a link when href is provided" do
