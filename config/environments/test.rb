@@ -58,6 +58,9 @@ Rails.application.configure do
   # Don't send real emails in tests.
   config.action_mailer.default_url_options = { host: "localhost:3000" }
 
+  # Allow all hosts in test to avoid host authorization failures
+  config.hosts.clear
+
   # Disable logging in tests by default.
   config.log_level = :fatal
 end

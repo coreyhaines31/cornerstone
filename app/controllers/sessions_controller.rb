@@ -1,4 +1,7 @@
 class SessionsController < Devise::SessionsController
+  skip_after_action :verify_authorized
+  skip_after_action :verify_policy_scoped
+
   # Magic link: request a sign-in link via email
   def new_magic_link
     render inertia: "Auth/MagicLink"

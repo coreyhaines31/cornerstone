@@ -7,7 +7,8 @@ RSpec.describe "Billing", type: :request do
 
   describe "GET /billing" do
     it "renders when authenticated" do
-      sign_in user
+      post user_session_path, params: { user: { email: user.email, password: "Password123!" } }
+      follow_redirect!
 
       get billing_path
 

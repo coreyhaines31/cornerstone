@@ -7,7 +7,8 @@ RSpec.describe "API Access", type: :request do
 
   describe "GET /api-access" do
     it "renders when authenticated" do
-      sign_in user
+      post user_session_path, params: { user: { email: user.email, password: "Password123!" } }
+      follow_redirect!
 
       get api_access_path
 
