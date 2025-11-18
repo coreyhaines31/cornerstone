@@ -1,0 +1,120 @@
+<div class="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md">
+    <%= render Styleguide::CardComponent.new do |c| %>
+      <% c.with_header(html_class: "text-center") do %>
+        <% c.with_title(html_class: "text-2xl") do %>
+          Create an account
+        <% end %>
+        <% c.with_description do %>
+          Enter your details below to get started
+        <% end %>
+      <% end %>
+
+      <% c.with_body do %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+          <%# Display error messages if any %>
+          <% if resource.errors.any? %>
+            <%= render Styleguide::AlertComponent.new(variant: :destructive) do |alert| %>
+              <% alert.with_title { "There were #{pluralize(resource.errors.count, 'error')} with your submission:" } %>
+              <% alert.with_description do %>
+                <ul class="list-disc list-inside text-sm mt-2">
+                  <% resource.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+            <% end %>
+          <% end %>
+
+          <%# Email field %>
+          <div class="space-y-2">
+            <%= render Styleguide::LabelComponent.new(for_id: "user_email") do %>
+              Email
+            <% end %>
+            <%= render Styleguide::InputComponent.new(
+              type: :email,
+              id: "user_email",
+              name: "user[email]",
+              value: resource.email,
+              placeholder: "name@example.com",
+              autocomplete: "email",
+              required: true
+            ) %>
+          </div>
+
+          <%# Password field %>
+          <div class="space-y-2">
+            <%= render Styleguide::LabelComponent.new(for_id: "user_password") do %>
+              Password
+              <% if @minimum_password_length %>
+                <span class="text-xs text-muted-foreground font-normal ml-1">
+                  (<%= @minimum_password_length %> characters minimum)
+                </span>
+              <% end %>
+            <% end %>
+            <%= render Styleguide::InputComponent.new(
+              type: :password,
+              id: "user_password",
+              name: "user[password]",
+              placeholder: "Create a password",
+              autocomplete: "new-password",
+              required: true
+            ) %>
+          </div>
+
+          <%# Password confirmation field %>
+          <div class="space-y-2">
+            <%= render Styleguide::LabelComponent.new(for_id: "user_password_confirmation") do %>
+              Confirm password
+            <% end %>
+            <%= render Styleguide::InputComponent.new(
+              type: :password,
+              id: "user_password_confirmation",
+              name: "user[password_confirmation]",
+              placeholder: "Confirm your password",
+              autocomplete: "new-password",
+              required: true
+            ) %>
+          </div>
+
+          <%# Terms and privacy %>
+          <div class="flex items-start space-x-2">
+            <%= render Styleguide::CheckboxComponent.new(
+              id: "terms",
+              name: "terms",
+              value: "1",
+              required: true
+            ) %>
+            <%= render Styleguide::LabelComponent.new(
+              for_id: "terms",
+              html_class: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            ) do %>
+              <span class="text-sm text-muted-foreground">
+                I agree to the
+                <%= link_to "Terms of Service", terms_path, class: "text-primary hover:underline", target: "_blank" %>
+                and
+                <%= link_to "Privacy Policy", privacy_path, class: "text-primary hover:underline", target: "_blank" %>
+              </span>
+            <% end %>
+          </div>
+
+          <%# Submit button %>
+          <%= render Styleguide::ButtonComponent.new(
+            type: :submit,
+            variant: :default,
+            html_class: "w-full"
+          ) do %>
+            Create account
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% c.with_footer do %>
+        <div class="text-center text-sm text-muted-foreground">
+          Already have an account?
+          <%= link_to "Sign in", new_session_path(resource_name), class: "font-semibold text-primary hover:underline" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
