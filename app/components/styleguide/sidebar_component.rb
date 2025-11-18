@@ -38,7 +38,7 @@ module Styleguide
 
     def sidebar_classes
       merge_classes(
-        "flex min-h-screen w-64 flex-col border-r bg-background",
+        "flex min-h-screen w-64 flex-col border-r bg-background overflow-visible",
         @html_class
       )
     end
@@ -91,7 +91,7 @@ module Styleguide
     class SidebarGroup < BaseComponent
       attr_reader :children_items
 
-      def initialize(label:, icon: nil, collapsible: true, open: false, html_class: nil, **options)
+      def initialize(label:, icon: nil, collapsible: true, open: false, html_class: nil, **options, &block)
         @label = label
         @icon = icon
         @collapsible = collapsible
@@ -99,6 +99,7 @@ module Styleguide
         @html_class = html_class
         @options = options
         @children_items = []
+        @block = block
       end
 
       def with_children(label:, href: nil, icon: nil, active: false, **options)
@@ -106,11 +107,28 @@ module Styleguide
       end
 
       def call
-        tag.li do
-          safe_join([
-            render_trigger,
-            render_content
-          ])
+        # Execute the block to populate children_items
+        instance_eval(&@block) if @block
+        
+        if @collapsible
+          tag.li(
+            data: {
+              controller: "sidebar-group",
+              sidebar_group_open_value: @open
+            }
+          ) do
+            safe_join([
+              render_trigger,
+              render_content
+            ])
+          end
+        else
+          tag.li do
+            safe_join([
+              render_trigger,
+              render_content
+            ])
+          end
         end
       end
 
@@ -123,9 +141,7 @@ module Styleguide
           tag.button(
             class: classes,
             data: {
-              controller: "sidebar-group",
-              action: "click->sidebar-group#toggle",
-              sidebar_group_open_value: @open
+              action: "click->sidebar-group#toggle"
             }
           ) do
             safe_join([
@@ -149,13 +165,19 @@ module Styleguide
       end
 
       def render_content
-        return nil if children_items.empty?
+        # Always render the content container if collapsible, even if empty
+        # This ensures the Stimulus target exists
+        return nil unless @collapsible
 
         tag.ul(
           class: "ml-4 mt-1 space-y-1 border-l pl-3 #{@open ? '' : 'hidden'}",
           data: { sidebar_group_target: "content" }
         ) do
-          safe_join(children_items.map { |item| render(item) })
+          if children_items.empty?
+            nil
+          else
+            safe_join(children_items.map { |item| item.call })
+          end
         end
       end
 
