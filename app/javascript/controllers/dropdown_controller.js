@@ -22,6 +22,27 @@ export default class extends Controller {
 
   open() {
     this.menuTarget.classList.remove("hidden")
+    
+    // For bottom-aligned dropdowns, ensure menu bottom aligns with button bottom
+    const button = this.element.querySelector('button')
+    if (button && this.menuTarget.style.bottom === '0px') {
+      // Wait for layout to calculate positions
+      setTimeout(() => {
+        const buttonRect = button.getBoundingClientRect()
+        const menuRect = this.menuTarget.getBoundingClientRect()
+        const parentRect = this.element.getBoundingClientRect()
+        
+        // Calculate the offset needed to align menu bottom with button bottom
+        const menuBottomRelativeToParent = parentRect.bottom - menuRect.bottom
+        const buttonBottomRelativeToParent = parentRect.bottom - buttonRect.bottom
+        
+        if (menuBottomRelativeToParent !== buttonBottomRelativeToParent) {
+          const offset = buttonBottomRelativeToParent - menuBottomRelativeToParent
+          this.menuTarget.style.bottom = `${offset}px`
+        }
+      }, 0)
+    }
+    
     // Use setTimeout to prevent immediate close from the same click event
     setTimeout(() => {
       document.addEventListener("click", this.close)
