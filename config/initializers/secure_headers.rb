@@ -25,7 +25,7 @@ SecureHeaders::Configuration.default do |config|
     font_src: %w['self' data:],
     img_src: %w['self' data: https:],
     object_src: %w['none'],
-    script_src: %w['self'],
+    script_src: %w['self' 'unsafe-inline'], # Allow inline scripts for importmap and module scripts
     style_src: %w['self' 'unsafe-inline'], # Allow inline styles for Tailwind
     connect_src: %w['self'],
     base_uri: %w['self'],
