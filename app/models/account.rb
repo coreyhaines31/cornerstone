@@ -20,9 +20,6 @@ class Account < ApplicationRecord
   # Callbacks
   before_validation :generate_slug, on: :create
 
-  # Store settings as JSON
-  serialize :settings, coder: JSON
-
   def owner
     memberships.owners.first&.user
   end
