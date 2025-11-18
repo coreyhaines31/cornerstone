@@ -14,6 +14,13 @@ class ApplicationController < ActionController::Base
         email: current_user.email,
         first_name: current_user.first_name,
         last_name: current_user.last_name
+      },
+      current_account: current_account && {
+        id: current_account.id,
+        name: current_account.name,
+        slug: current_account.slug,
+        plan: current_account.plan_name,
+        subscription_status: current_account.subscription_status
       }
     }
   end

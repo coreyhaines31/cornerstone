@@ -22,11 +22,11 @@
     "vite-plugin-ruby": "^5.1.1"
   },
   "dependencies": {
-    "@inertiajs/progress": "^0.2.7",
     "@inertiajs/react": "^2.2.18",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.554.0",
+    "nprogress": "^0.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.4.0"

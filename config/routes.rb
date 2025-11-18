@@ -50,6 +50,11 @@ Rails.application.routes.draw do
       end
     end
 
+    # Billing, team, and developer settings
+    get '/billing', to: 'billing#show', as: :billing
+    get '/team', to: 'team#show', as: :team
+    get '/api-access', to: 'api_access#show', as: :api_access
+
     # Accounts
     resources :accounts do
       member do

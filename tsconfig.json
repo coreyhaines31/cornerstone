@@ -16,10 +16,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "types": ["vite/client"],
     "paths": {
       "@/*": ["app/javascript/*"]
     }
   },
-  "include": ["app/javascript/**/*", "vite.config.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["app/javascript/**/*", "vite.config.ts"]
 }

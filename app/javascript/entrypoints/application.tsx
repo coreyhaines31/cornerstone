@@ -1,15 +1,15 @@
 import "../styles/tailwind.css"
+import "nprogress/nprogress.css"
 
 import { createInertiaApp, router } from "@inertiajs/react"
 import { createRoot } from "react-dom/client"
-
-import { setupProgressBar } from "@inertiajs/progress"
+import NProgress from "nprogress"
 
 type PageResolver = Record<string, () => Promise<unknown>>
 
 const pages: PageResolver = import.meta.glob("../pages/**/*.tsx")
 
-setupProgressBar({ color: "#2563eb" })
+NProgress.configure({ showSpinner: false })
 
 createInertiaApp({
   title: (title) => (title ? `${title} | Cornerstone` : "Cornerstone"),
@@ -29,6 +29,8 @@ createInertiaApp({
   progress: false,
 })
 
-router.on("navigate", () => {
+router.on("start", () => NProgress.start())
+router.on("finish", () => {
+  NProgress.done()
   window.scrollTo({ top: 0, behavior: "smooth" })
 })
