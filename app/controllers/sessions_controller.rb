@@ -10,11 +10,26 @@ class SessionsController < Devise::SessionsController
   # POST /sign-in
   def create
     self.resource = warden.authenticate!(auth_options)
+
+    # Devise's sign_in method automatically handles:
+    # - Setting session
+    # - Updating trackable fields (sign_in_count, current_sign_in_at, last_sign_in_at, etc.)
+    # - Running before/after hooks and callbacks
+    # - Updating remember_me token if requested
     set_flash_message!(:notice, :signed_in)
     sign_in(resource_name, resource)
     yield resource if block_given?
+
     redirect_to after_sign_in_path_for(resource)
-  rescue StandardError => e
+  rescue Warden::NotAuthenticated
+    # Warden's authenticate! properly handles:
+    # - Incrementing failed_attempts counter
+    # - Locking account after max failed attempts (if lockable enabled)
+    # - Generating and setting unlock_token
+    # - Preventing timing attacks by not revealing if email exists
+    self.resource = resource_class.new(sign_in_params)
+    clean_up_passwords(resource)
+
     render inertia: 'Auth/SignIn', props: {
       errors: { base: ['Invalid email or password'] }
     }

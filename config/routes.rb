@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   root "pages#home"
 
   # Devise routes with custom controllers and clean URLs
-  devise_for :users, path: '', controllers: {
+  # Skip password routes from devise_for since we define them manually below
+  devise_for :users, path: '', skip: [:passwords], controllers: {
     registrations: 'registrations',
-    sessions: 'sessions',
-    passwords: 'passwords'
+    sessions: 'sessions'
   }, path_names: {
     sign_in: 'sign-in',
     sign_out: 'sign-out',
@@ -21,11 +21,11 @@ Rails.application.routes.draw do
 
   # Devise scope for additional routes
   devise_scope :user do
-    # Password reset routes with clean URLs
-    get '/forgot-password', to: 'passwords#new', as: :new_password
+    # Password reset routes with clean URLs and custom controller
+    get '/forgot-password', to: 'passwords#new', as: :new_user_password
     post '/forgot-password', to: 'passwords#create', as: :user_password
-    get '/reset-password', to: 'passwords#edit', as: :edit_password
-    put '/reset-password', to: 'passwords#update'
+    get '/reset-password', to: 'passwords#edit', as: :edit_user_password
+    put '/reset-password', to: 'passwords#update', as: :user_password_update
 
     # Magic link routes
     get '/magic-link', to: 'sessions#new_magic_link', as: :new_magic_link
