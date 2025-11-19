@@ -8,22 +8,26 @@ Rails.application.routes.draw do
   # Root route
   root "pages#home"
 
-  # Devise routes with custom controllers
-  devise_for :users, controllers: {
+  # Devise routes with custom controllers and clean URLs
+  devise_for :users, path: '', controllers: {
     registrations: 'registrations',
     sessions: 'sessions'
+  }, path_names: {
+    sign_in: 'sign-in',
+    sign_out: 'sign-out',
+    sign_up: 'sign-up'
   }
 
   # Devise scope for additional routes
   devise_scope :user do
     # Magic link routes
-    get '/users/magic_link', to: 'sessions#new_magic_link', as: :new_magic_link
-    post '/users/magic_link', to: 'sessions#create_magic_link'
-    get '/users/magic_link/:token', to: 'sessions#verify_magic_link', as: :verify_magic_link
+    get '/magic-link', to: 'sessions#new_magic_link', as: :new_magic_link
+    post '/magic-link', to: 'sessions#create_magic_link'
+    get '/magic-link/:token', to: 'sessions#verify_magic_link', as: :verify_magic_link
 
     # Two-factor authentication
-    get '/users/two_factor', to: 'sessions#new_otp', as: :new_otp
-    post '/users/two_factor', to: 'sessions#verify_otp', as: :verify_otp
+    get '/two-factor', to: 'sessions#new_otp', as: :new_otp
+    post '/two-factor', to: 'sessions#verify_otp', as: :verify_otp
   end
 
   # Public pages
