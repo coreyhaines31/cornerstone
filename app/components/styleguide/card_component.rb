@@ -5,12 +5,6 @@ module Styleguide
     renders_one :header, lambda { |html_class: nil, **options|
       CardHeader.new(html_class: html_class, **options)
     }
-    renders_one :title, lambda { |html_class: nil, **options|
-      CardTitle.new(html_class: html_class, **options)
-    }
-    renders_one :description, lambda { |html_class: nil, **options|
-      CardDescription.new(html_class: html_class, **options)
-    }
     renders_one :body, lambda { |html_class: nil, **options|
       CardContent.new(html_class: html_class, **options)
     }
@@ -25,7 +19,7 @@ module Styleguide
 
     def call
       tag.div(class: card_classes, **@options) do
-        safe_join([header, title, description, body, footer].compact)
+        safe_join([header, body, footer].compact)
       end
     end
 
@@ -39,13 +33,22 @@ module Styleguide
     end
 
     class CardHeader < BaseComponent
+      renders_one :title, lambda { |html_class: nil, **options|
+        CardTitle.new(html_class: html_class, **options)
+      }
+      renders_one :description, lambda { |html_class: nil, **options|
+        CardDescription.new(html_class: html_class, **options)
+      }
+
       def initialize(html_class: nil, **options)
         @html_class = html_class
         @options = options
       end
 
       def call
-        tag.div(content, class: header_classes, **@options)
+        tag.div(class: header_classes, **@options) do
+          safe_join([title, description, content].compact)
+        end
       end
 
       private
