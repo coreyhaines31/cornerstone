@@ -1,8 +1,8 @@
-<div class="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
-  <div class="w-full max-w-md">
+<div class="min-h-screen flex items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+  <div class="w-full max-w-sm">
     <%= render Styleguide::CardComponent.new do |c| %>
-      <% c.with_header(html_class: "text-center") do |header| %>
-        <% header.with_title(html_class: "text-2xl") do %>
+      <% c.with_header(html_class: "text-center space-y-2") do |header| %>
+        <% header.with_title(html_class: "text-2xl font-semibold tracking-tight") do %>
           Change your password
         <% end %>
         <% header.with_description do %>
@@ -11,7 +11,7 @@
       <% end %>
 
       <% c.with_body do %>
-        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "space-y-6" }) do |f| %>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "grid gap-4" }) do |f| %>
           <%= f.hidden_field :reset_password_token %>
 
           <%# Display error messages if any %>
@@ -29,7 +29,7 @@
           <% end %>
 
           <%# New password field %>
-          <div class="space-y-2">
+          <div class="grid gap-2">
             <%= render Styleguide::LabelComponent.new(for_id: "user_password") do %>
               New password
               <% if @minimum_password_length %>
@@ -49,7 +49,7 @@
           </div>
 
           <%# Password confirmation field %>
-          <div class="space-y-2">
+          <div class="grid gap-2">
             <%= render Styleguide::LabelComponent.new(for_id: "user_password_confirmation") do %>
               Confirm new password
             <% end %>

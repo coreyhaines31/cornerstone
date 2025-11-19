@@ -1,8 +1,8 @@
 <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-  <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-6 pb-4">
+  <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-border bg-card px-6 pb-4">
     <div class="flex h-16 shrink-0 items-center">
       <%= link_to dashboard_path, class: "flex items-center" do %>
-        <span class="text-xl font-bold text-gray-900 dark:text-white"><%= Rails.application.config.application_name %></span>
+        <span class="text-xl font-bold text-foreground"><%= Rails.application.config.application_name %></span>
       <% end %>
     </div>
 
@@ -35,14 +35,14 @@
 </div>
 
 <%# Mobile menu button %>
-<div class="sticky top-0 z-40 flex items-center gap-x-6 bg-white dark:bg-gray-800 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
-  <button type="button" class="-m-2.5 p-2.5 text-gray-700 dark:text-gray-200 lg:hidden" data-action="click->mobile-menu#toggle">
+<div class="sticky top-0 z-40 flex items-center gap-x-6 bg-card border-b border-border px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+  <button type="button" class="-m-2.5 p-2.5 text-foreground lg:hidden" data-action="click->mobile-menu#toggle">
     <span class="sr-only">Open sidebar</span>
     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
     </svg>
   </button>
-  <div class="flex-1 text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+  <div class="flex-1 text-sm font-semibold leading-6 text-foreground">
     <%= content_for(:page_title) || "Dashboard" %>
   </div>
 </div>
@@ -51,8 +51,8 @@
 <% def nav_link(text, path, icon: nil, method: nil)
   active = current_page?(path)
   classes = active ?
-    "bg-gray-50 dark:bg-gray-900 text-indigo-600 dark:text-indigo-400 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold" :
-    "text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-50 dark:hover:bg-gray-900 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+    "bg-accent text-accent-foreground group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold" :
+    "text-muted-foreground hover:text-foreground hover:bg-accent/50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold transition-colors"
 
   link_to path, method: method, class: classes do
     concat icon if icon
