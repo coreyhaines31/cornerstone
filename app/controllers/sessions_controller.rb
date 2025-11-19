@@ -2,6 +2,24 @@ class SessionsController < Devise::SessionsController
   skip_after_action :verify_authorized
   skip_after_action :verify_policy_scoped
 
+  # GET /sign-in
+  def new
+    render inertia: 'Auth/SignIn'
+  end
+
+  # POST /sign-in
+  def create
+    self.resource = warden.authenticate!(auth_options)
+    set_flash_message!(:notice, :signed_in)
+    sign_in(resource_name, resource)
+    yield resource if block_given?
+    redirect_to after_sign_in_path_for(resource)
+  rescue StandardError => e
+    render inertia: 'Auth/SignIn', props: {
+      errors: { base: ['Invalid email or password'] }
+    }
+  end
+
   # Magic link: request a sign-in link via email
   def new_magic_link
     render inertia: "Auth/MagicLink"

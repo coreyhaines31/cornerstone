@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   # Devise routes with custom controllers and clean URLs
   devise_for :users, path: '', controllers: {
     registrations: 'registrations',
-    sessions: 'sessions'
+    sessions: 'sessions',
+    passwords: 'passwords'
   }, path_names: {
     sign_in: 'sign-in',
     sign_out: 'sign-out',
@@ -20,6 +21,12 @@ Rails.application.routes.draw do
 
   # Devise scope for additional routes
   devise_scope :user do
+    # Password reset routes with clean URLs
+    get '/forgot-password', to: 'passwords#new', as: :new_password
+    post '/forgot-password', to: 'passwords#create', as: :user_password
+    get '/reset-password', to: 'passwords#edit', as: :edit_password
+    put '/reset-password', to: 'passwords#update'
+
     # Magic link routes
     get '/magic-link', to: 'sessions#new_magic_link', as: :new_magic_link
     post '/magic-link', to: 'sessions#create_magic_link'

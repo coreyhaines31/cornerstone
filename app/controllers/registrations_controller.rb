@@ -7,7 +7,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   # GET /users/sign_up
   def new
-    super
+    build_resource
+    render inertia: 'Auth/SignUp', props: {
+      minPasswordLength: @minimum_password_length || 6
+    }
   end
 
   # POST /users
@@ -33,18 +36,18 @@ class RegistrationsController < Devise::RegistrationsController
       )
 
       if resource.active_for_authentication?
-        set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
+        redirect_to after_sign_up_path_for(resource), notice: 'Welcome! You have signed up successfully.'
       else
-        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        redirect_to after_inactive_sign_up_path_for(resource), notice: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
       end
     else
       clean_up_passwords resource
-      set_minimum_password_length
-      respond_with resource
+      render inertia: 'Auth/SignUp', props: {
+        errors: resource.errors.messages,
+        minPasswordLength: @minimum_password_length || 6
+      }
     end
   end
 
