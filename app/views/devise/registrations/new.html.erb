@@ -26,6 +26,38 @@
             <% end %>
           <% end %>
 
+          <%# First name field %>
+          <div class="space-y-2">
+            <%= render Styleguide::LabelComponent.new(for_id: "user_first_name") do %>
+              First name
+            <% end %>
+            <%= render Styleguide::InputComponent.new(
+              type: :text,
+              id: "user_first_name",
+              name: "user[first_name]",
+              value: resource.first_name,
+              placeholder: "John",
+              autocomplete: "given-name",
+              required: true
+            ) %>
+          </div>
+
+          <%# Last name field %>
+          <div class="space-y-2">
+            <%= render Styleguide::LabelComponent.new(for_id: "user_last_name") do %>
+              Last name
+            <% end %>
+            <%= render Styleguide::InputComponent.new(
+              type: :text,
+              id: "user_last_name",
+              name: "user[last_name]",
+              value: resource.last_name,
+              placeholder: "Doe",
+              autocomplete: "family-name",
+              required: true
+            ) %>
+          </div>
+
           <%# Email field %>
           <div class="space-y-2">
             <%= render Styleguide::LabelComponent.new(for_id: "user_email") do %>
