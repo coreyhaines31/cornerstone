@@ -8,34 +8,13 @@ Rails.application.routes.draw do
   # Root route
   root "pages#home"
 
-  # Devise routes with custom controllers and clean URLs
-  # Skip password routes from devise_for since we define them manually below
-  devise_for :users, path: '', skip: [:passwords], controllers: {
-    registrations: 'registrations',
-    sessions: 'sessions'
-  }, path_names: {
+  # Devise routes with clean URLs
+  devise_for :users, path: '', path_names: {
     sign_in: 'sign-in',
     sign_out: 'sign-out',
-    sign_up: 'sign-up'
+    sign_up: 'sign-up',
+    password: 'password'
   }
-
-  # Devise scope for additional routes
-  devise_scope :user do
-    # Password reset routes with clean URLs and custom controller
-    get '/forgot-password', to: 'passwords#new', as: :new_user_password
-    post '/forgot-password', to: 'passwords#create', as: :user_password
-    get '/reset-password', to: 'passwords#edit', as: :edit_user_password
-    put '/reset-password', to: 'passwords#update', as: :user_password_update
-
-    # Magic link routes
-    get '/magic-link', to: 'sessions#new_magic_link', as: :new_magic_link
-    post '/magic-link', to: 'sessions#create_magic_link'
-    get '/magic-link/:token', to: 'sessions#verify_magic_link', as: :verify_magic_link
-
-    # Two-factor authentication
-    get '/two-factor', to: 'sessions#new_otp', as: :new_otp
-    post '/two-factor', to: 'sessions#verify_otp', as: :verify_otp
-  end
 
   # Public pages
   get '/pricing', to: 'pages#pricing', as: :pricing

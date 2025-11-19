@@ -1,0 +1,88 @@
+<div class="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md">
+    <%= render Styleguide::CardComponent.new do |c| %>
+      <% c.with_header(html_class: "text-center") do |h| %>
+        <% h.with_title(html_class: "text-2xl") do %>
+          Welcome back
+        <% end %>
+        <% h.with_description do %>
+          Sign in to your account to continue
+        <% end %>
+      <% end %>
+
+      <% c.with_body do %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+          <%# Email field %>
+          <div class="space-y-2">
+            <%= render Styleguide::LabelComponent.new(for_id: "user_email") do %>
+              Email
+            <% end %>
+            <%= render Styleguide::InputComponent.new(
+              type: :email,
+              id: "user_email",
+              name: "user[email]",
+              value: resource.email,
+              placeholder: "name@example.com",
+              autocomplete: "email",
+              required: true
+            ) %>
+          </div>
+
+          <%# Password field %>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <%= render Styleguide::LabelComponent.new(for_id: "user_password") do %>
+                Password
+              <% end %>
+              <% if devise_mapping.recoverable? %>
+                <%= link_to "Forgot password?", new_password_path(resource_name), class: "text-sm font-medium text-primary hover:underline" %>
+              <% end %>
+            </div>
+            <%= render Styleguide::InputComponent.new(
+              type: :password,
+              id: "user_password",
+              name: "user[password]",
+              placeholder: "Enter your password",
+              autocomplete: "current-password",
+              required: true
+            ) %>
+          </div>
+
+          <%# Remember me checkbox %>
+          <% if devise_mapping.rememberable? %>
+            <div class="flex items-center space-x-2">
+              <%= render Styleguide::CheckboxComponent.new(
+                id: "user_remember_me",
+                name: "user[remember_me]",
+                value: "1",
+                checked: resource.remember_me
+              ) %>
+              <%= render Styleguide::LabelComponent.new(
+                for_id: "user_remember_me",
+                html_class: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              ) do %>
+                Remember me
+              <% end %>
+            </div>
+          <% end %>
+
+          <%# Submit button %>
+          <%= render Styleguide::ButtonComponent.new(
+            type: :submit,
+            variant: :default,
+            html_class: "w-full"
+          ) do %>
+            Sign in
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% c.with_footer do %>
+        <div class="text-center text-sm text-muted-foreground">
+          Don't have an account?
+          <%= link_to "Sign up", new_registration_path(resource_name), class: "font-semibold text-primary hover:underline" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

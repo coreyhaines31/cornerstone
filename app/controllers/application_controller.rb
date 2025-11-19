@@ -25,8 +25,8 @@ class ApplicationController < ActionController::Base
     }
   end
 
-  after_action :verify_authorized, except: :index, unless: :skip_authorization?
-  after_action :verify_policy_scoped, only: :index, unless: :skip_authorization?
+  after_action :verify_authorized, if: :verify_authorized?
+  after_action :verify_policy_scoped, if: :verify_policy_scoped?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -110,6 +110,14 @@ class ApplicationController < ActionController::Base
 
   def skip_authorization?
     devise_controller? || is_a?(HealthController)
+  end
+
+  def verify_authorized?
+    !skip_authorization? && action_name != 'index'
+  end
+
+  def verify_policy_scoped?
+    !skip_authorization? && action_name == 'index'
   end
 
   def require_admin!
