@@ -19,8 +19,9 @@ class RegistrationsController < Devise::RegistrationsController
 
     if resource.persisted?
       # Create default account for new user
+      account_name = resource.first_name.present? ? "#{resource.first_name}'s Account" : "My Account"
       account = Account.create!(
-        name: "#{resource.first_name}'s Account",
+        name: account_name,
         slug: generate_slug(resource.email)
       )
 

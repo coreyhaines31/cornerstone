@@ -26,38 +26,6 @@
             <% end %>
           <% end %>
 
-          <%# First name field %>
-          <div class="space-y-2">
-            <%= render Styleguide::LabelComponent.new(for_id: "user_first_name") do %>
-              First name
-            <% end %>
-            <%= render Styleguide::InputComponent.new(
-              type: :text,
-              id: "user_first_name",
-              name: "user[first_name]",
-              value: resource.first_name,
-              placeholder: "John",
-              autocomplete: "given-name",
-              required: true
-            ) %>
-          </div>
-
-          <%# Last name field %>
-          <div class="space-y-2">
-            <%= render Styleguide::LabelComponent.new(for_id: "user_last_name") do %>
-              Last name
-            <% end %>
-            <%= render Styleguide::InputComponent.new(
-              type: :text,
-              id: "user_last_name",
-              name: "user[last_name]",
-              value: resource.last_name,
-              placeholder: "Doe",
-              autocomplete: "family-name",
-              required: true
-            ) %>
-          </div>
-
           <%# Email field %>
           <div class="space-y-2">
             <%= render Styleguide::LabelComponent.new(for_id: "user_email") do %>
@@ -89,21 +57,6 @@
               id: "user_password",
               name: "user[password]",
               placeholder: "Create a password",
-              autocomplete: "new-password",
-              required: true
-            ) %>
-          </div>
-
-          <%# Password confirmation field %>
-          <div class="space-y-2">
-            <%= render Styleguide::LabelComponent.new(for_id: "user_password_confirmation") do %>
-              Confirm password
-            <% end %>
-            <%= render Styleguide::InputComponent.new(
-              type: :password,
-              id: "user_password_confirmation",
-              name: "user[password_confirmation]",
-              placeholder: "Confirm your password",
               autocomplete: "new-password",
               required: true
             ) %>
