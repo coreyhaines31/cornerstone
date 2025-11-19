@@ -13,7 +13,7 @@ class PasswordsController < Devise::PasswordsController
     yield resource if block_given?
 
     if successfully_sent?(resource)
-      redirect_to new_session_path(resource_name), notice: 'You will receive an email with instructions on how to reset your password in a few minutes.'
+      redirect_to new_user_session_path, notice: 'You will receive an email with instructions on how to reset your password in a few minutes.'
     else
       render inertia: 'Auth/ForgotPassword', props: {
         errors: resource.errors.messages
@@ -67,6 +67,6 @@ class PasswordsController < Devise::PasswordsController
 
   # The path used after sending reset password instructions
   def after_sending_reset_password_instructions_path_for(resource_name)
-    new_session_path(resource_name) if is_navigational_format?
+    new_user_session_path if is_navigational_format?
   end
 end

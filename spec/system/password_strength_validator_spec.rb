@@ -80,7 +80,7 @@ RSpec.describe "Password Strength Validator", type: :system, js: true do
       click_button 'Create account'
 
       # Should successfully create account
-      expect(page).to have_current_path(onboarding_path, wait: 5)
+      expect(page).to have_current_path(dashboard_path, wait: 5)
     end
 
     it "validates password strength on submission" do

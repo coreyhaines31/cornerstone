@@ -82,7 +82,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    onboarding_path # or dashboard_path
+    dashboard_path
   end
 
   def after_update_path_for(resource)

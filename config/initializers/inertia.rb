@@ -11,4 +11,7 @@ InertiaRails.configure do |config|
       Time.current.to_i.to_s
     end
   end
+
+  # Always include errors hash in Inertia responses (future-proof for v4.0)
+  config.always_include_errors_hash = true
 end

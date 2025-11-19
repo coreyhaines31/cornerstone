@@ -33,7 +33,7 @@ RSpec.describe "Password Reset", type: :request do
 
       it "redirects to sign in with notice" do
         post "/forgot-password", params: valid_params
-        expect(response).to redirect_to(new_session_path(:user))
+        expect(response).to redirect_to(new_user_session_path)
         expect(flash[:notice]).to match(/reset your password/)
       end
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Sign Up", type: :request do
   describe "GET /sign-up" do
     it "renders the sign up page via Inertia" do
-      get "/sign-up"
+      get "/sign-up", headers: { 'X-Inertia' => 'true', 'X-Inertia-Version' => '1' }
 
       expect(response).to have_http_status(:success)
       expect(response.headers['X-Inertia']).to eq('true')
@@ -48,9 +48,9 @@ RSpec.describe "Sign Up", type: :request do
         expect(controller.current_user).to eq(User.last)
       end
 
-      it "redirects to after_sign_up_path" do
+      it "redirects to dashboard" do
         post "/sign-up", params: valid_params
-        expect(response).to redirect_to(onboarding_path)
+        expect(response).to redirect_to(dashboard_path)
       end
     end
 
